@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.18525179856115107" />
         <entry key="app/src/main/res/drawable/arrow_back_ios-48px.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/arrow_downward-48px.xml" value="0.2105" />
         <entry key="app/src/main/res/drawable/ic_outline_fastfood_24.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/ic_outline_transaction_24.xml" value="0.1685" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bot_nav_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.3307291666666667" />
       </map>
     </option>
   </component>

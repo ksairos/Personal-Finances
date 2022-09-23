@@ -5,17 +5,20 @@
         android:icon="@drawable/ic_outline_credit_card_24"
         android:title="@string/accounts"
         android:orderInCategory="1"
+        android:enabled="true"
         />
     <item
         android:id="@+id/bot_nav_categories"
         android:icon="@drawable/ic_outline_category_24"
         android:title="@string/categories"
         android:orderInCategory="2"
+        android:enabled="true"
         />
     <item
         android:id="@+id/bot_nav_transactions"
         android:icon="@drawable/ic_outline_transaction_24"
         android:title="@string/transactions"
         android:orderInCategory="3"
+        android:enabled="true"
         />
 </menu>
