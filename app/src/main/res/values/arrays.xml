@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="icons">
+        <item>@drawable/ic_outline_fastfood_48</item>
+        <item>@drawable/ic_outline_card_giftcard_48</item>
+        <item>@drawable/ic_outline_house_48</item>
+        <item>@drawable/ic_outline_phone_android_48</item>
+        <item>@drawable/ic_outline_shopping_bag_48</item>
+        <item>@drawable/ic_outline_transport_48</item>
+    </array>
+
+    <array name="colors">
+        <item>@color/m3_black</item>
+        <item>@color/m3_sys_light_on_primary_container</item>
+        <item>@color/m3_sys_light_on_error_container</item>
+        <item>@color/my_green</item>
+    </array>
+</resources>
