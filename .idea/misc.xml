@@ -7,14 +7,17 @@
         <entry key="app/src/main/res/drawable/arrow_back_ios-48px.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/arrow_downward-48px.xml" value="0.2105" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.176" />
+        <entry key="app/src/main/res/drawable/ic_outline_card_giftcard_24.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_outline_fastfood_24.xml" value="0.312" />
+        <entry key="app/src/main/res/drawable/ic_outline_house_24.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_outline_menu_24.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/ic_outline_transaction_24.xml" value="0.1685" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_add_category.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2851851851851852" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/add_category_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.3458333333333333" />
-        <entry key="app/src/main/res/layout/category_item_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/category_item_main.xml" value="0.2868972778320313" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3458333333333333" />

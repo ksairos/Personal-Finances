@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/category"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:text="@string/category" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/category_icon"
@@ -23,7 +23,7 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        app:icon="@drawable/ic_outline_fastfood_24"
+        app:icon="@drawable/ic_outline_fastfood_48"
         app:iconGravity="textStart"
         app:iconPadding="0dp" />
 
