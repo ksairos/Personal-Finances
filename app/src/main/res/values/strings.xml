@@ -9,4 +9,10 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="category">Category</string>
+    <string name="add_a_new_category">Add a new category</string>
+    <string name="name">Name</string>
+    <string name="new_category">New Category</string>
+    <string name="confirm">confirm</string>
+    <string name="color">Color</string>
+    <string name="icon">Icon</string>
 </resources>

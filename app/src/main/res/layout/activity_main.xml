@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/bot_nav"
@@ -33,7 +34,7 @@
                 android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:menu="@menu/toolbar_menu"
+                app:menu="@menu/toolbar_edit"
                 app:navigationIcon="@drawable/ic_outline_menu_24"
                 app:subtitle="@string/all_accounts"
                 app:subtitleCentered="true"
@@ -88,6 +89,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bot_nav_menu" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_category_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="28dp"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toTopOf="@+id/bot_nav"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/add_a_new_category" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
