@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.asLiveData
 import com.example.personalfinances.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,33 +24,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize Arrays for Icon and Color resources
-        val icons = resources.obtainTypedArray(R.array.icons)
-        val colors = resources.obtainTypedArray(R.array.colors)
-
+        // Initialize our DB
         val db = MainDb.getDb(this)
-        db.getDao().getAll()
-
-        // this launcher allows us to get results from our another activity
-        launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            result: ActivityResult ->
-            if (result.resultCode == RESULT_OK){
-                val catName = result.data?.getStringExtra(Utils.CAT_NAME_KEY)
-                val catColor = result.data?.getIntExtra(Utils.CAT_COLOR_KEY, 0)
-                val catIcon = result.data?.getIntExtra(Utils.CAT_ICON_KEY, 0)
-
-                binding.categoryName.text = catName
-                binding.categoryIcon.setBackgroundColor(colors.getColor(catColor!!, -1))
-                binding.categoryIcon.icon = icons.getDrawable(catIcon!!)
-
-            }else{
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+        // Use LiveData to observe the data in our Database
+        // TODO: Put LiveData into RecyclerView
+        db.getDao().getAll().asLiveData().observe(this){
+            it.forEach{ category ->
+                binding.categoryName.text = category.name
+                binding.categoryIcon.setBackgroundColor(category.color)
+                binding.categoryIcon.setIconResource(category.icon)
             }
         }
-
-//        binding.categoryName.text = catName
-//        binding.categoryIcon.setBackgroundColor(colors.getColor(catColor!!, -1))
-//        binding.categoryIcon.icon = icons.getDrawable(catIcon!!)
 
         // use launcher to start AddCategoryActivity when FAB is pressed
         binding.addCategoryFab.setOnClickListener {

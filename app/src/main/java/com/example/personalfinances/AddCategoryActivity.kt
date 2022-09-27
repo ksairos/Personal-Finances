@@ -25,7 +25,7 @@ class AddCategoryActivity : AppCompatActivity() {
         val db = MainDb.getDb(this)
 
         // Listener for Cancel button
-        binding.topAppBar.setNavigationOnClickListener { setResult(RESULT_CANCELED) }
+        binding.topAppBar.setNavigationOnClickListener { finish() }
 
         // Listener for Confirmation button
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
@@ -40,22 +40,18 @@ class AddCategoryActivity : AppCompatActivity() {
                 val catColorIdx = binding.addCatIcon.text.toString().toInt()
                 val catIconIdx = binding.addCatColor.text.toString().toInt()
 
+                // Create color resource and icon R.drawable.id and pass them into our Category instance
                 val catColor = colors.getColor(catColorIdx, -1)
                 val catIcon = icons.getResourceId(catIconIdx, -1)
 
                 val newCategory = Category(null, catName, 0, catIcon, catColor)
 
+                // In order to insert new Category to our DB use Threads or
+                // TODO: Try using Coroutines in order to insert data to our DB
                 Thread{
                     db.getDao().insert(newCategory)
                 }.start()
 
-//                // Create intent, send there our data and finish this activity
-//                val intent = Intent()
-//                intent.putExtra(Utils.CAT_NAME_KEY, catName)
-//                intent.putExtra(Utils.CAT_ICON_KEY, catIcon)
-//                intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
-
-//                setResult(RESULT_OK, intent)
                 finish()
                 true
             }else{

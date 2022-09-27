@@ -14,4 +14,6 @@ interface Dao {
     fun getAll(): Flow<List<Category>>
     @Delete
     fun delete(category: Category)
+    @Query("DELETE FROM category")
+    fun nukeCats()
 }
