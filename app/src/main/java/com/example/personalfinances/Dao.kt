@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface Dao {
     @Insert
     fun insert(category: Category)
-    @Query("SELECT * FROM categories")
+    @Query("SELECT * FROM category")
     fun getAll(): Flow<List<Category>>
     @Delete
     fun delete(category: Category)

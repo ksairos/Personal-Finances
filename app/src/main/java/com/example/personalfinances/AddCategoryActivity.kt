@@ -1,6 +1,7 @@
 package com.example.personalfinances
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,12 @@ class AddCategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // Initialize Arrays for Icon and Color resources
+        val icons = resources.obtainTypedArray(R.array.icons)
+        val colors = resources.obtainTypedArray(R.array.colors)
+
+        // Initialize our DataBase
+//        val db = MainDb.getDb(this)
 
         // Listener for Cancel button
         binding.topAppBar.setNavigationOnClickListener { setResult(RESULT_CANCELED) }
@@ -25,18 +32,32 @@ class AddCategoryActivity : AppCompatActivity() {
             if (menuItem.itemId == R.id.toolbar_confirm){
 
                 // Collect data from Inputs
-                val catName = binding.addCatName.text?.toString()
+                val catName = binding.addCatName.text.toString()
                 Log.d(TAG, "CREATED NAME $catName")
 
+                // For now we will use TextEdit to create Icon and Color of Category
                 // TODO: Create dialog for choosing colors and icons
-                val catColor = 1
-                val catIcon = 3
+                val catColorIdx = binding.addCatIcon.text.toString().toInt()
+                val catIconIdx = binding.addCatColor.text.toString().toInt()
+
+//                val catColor = colors.getColor(catColorIdx, -1)
+//                val catIcon = icons.getDrawable(catIconIdx)
+
+//                val newCategory = Category(null, catName, 0, catIcon, catColor)
+//
+//                Thread{
+//                    db.getDao().insert(newCategory)
+//                }.start()
 
                 // Create intent, send there our data and finish this activity
                 val intent = Intent()
                 intent.putExtra(Utils.CAT_NAME_KEY, catName)
-                intent.putExtra(Utils.CAT_ICON_KEY, catIcon)
-                intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
+                intent.putExtra(Utils.CAT_ICON_KEY, catIconIdx)
+                intent.putExtra(Utils.CAT_COLOR_KEY, catColorIdx)
+
+//                intent.putExtra(Utils.CAT_NAME_KEY, catName)
+//                intent.putExtra(Utils.CAT_ICON_KEY, catIcon)
+//                intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
 
                 setResult(RESULT_OK, intent)
                 finish()
@@ -45,5 +66,6 @@ class AddCategoryActivity : AppCompatActivity() {
                 false
             }
         }
+
     }
 }

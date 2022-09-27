@@ -23,9 +23,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Initialize Arrays for Icon and Color resources
         val icons = resources.obtainTypedArray(R.array.icons)
         val colors = resources.obtainTypedArray(R.array.colors)
 
+//        val db = MainDb.getDb(this)
+//        db.getDao().getAll()
 
         // this launcher allows us to get results from our another activity
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 val catName = result.data?.getStringExtra(Utils.CAT_NAME_KEY)
                 val catColor = result.data?.getIntExtra(Utils.CAT_COLOR_KEY, 0)
                 val catIcon = result.data?.getIntExtra(Utils.CAT_ICON_KEY, 0)
-                
+
                 binding.categoryName.text = catName
                 binding.categoryIcon.setBackgroundColor(colors.getColor(catColor!!, -1))
                 binding.categoryIcon.icon = icons.getDrawable(catIcon!!)
@@ -44,10 +47,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+//        binding.categoryName.text = catName
+//        binding.categoryIcon.setBackgroundColor(colors.getColor(catColor!!, -1))
+//        binding.categoryIcon.icon = icons.getDrawable(catIcon!!)
+
         // use launcher to start AddCategoryActivity when FAB is pressed
         binding.addCategoryFab.setOnClickListener {
             val intent = Intent(this@MainActivity, AddCategoryActivity::class.java)
-            launcher?.launch(intent)
+//            launcher?.launch(intent)
+            startActivity(intent)
         }
     }
 }
