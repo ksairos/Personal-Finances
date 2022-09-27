@@ -1,10 +1,8 @@
 package com.example.personalfinances
 
-import android.content.Intent
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.personalfinances.databinding.ActivityAddCategoryBinding
 
 class AddCategoryActivity : AppCompatActivity() {
@@ -29,7 +27,7 @@ class AddCategoryActivity : AppCompatActivity() {
 
         // Listener for Confirmation button
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            if (menuItem.itemId == R.id.toolbar_confirm){
+            if (menuItem.itemId == R.id.toolbar_confirm) {
 
                 // Collect data from Inputs
                 val catName = binding.addCatName.text.toString()
@@ -37,29 +35,24 @@ class AddCategoryActivity : AppCompatActivity() {
 
                 // For now we will use TextEdit to create Icon and Color of Category
                 // TODO: Create dialog for choosing colors and icons
-<<<<<<< HEAD
-                val catColor = binding.addCatColor.text?.toString()?.toInt()
-                val catIcon = binding.addCatIcon.text?.toString()?.toInt()
-=======
                 val catColorIdx = binding.addCatIcon.text.toString().toInt()
                 val catIconIdx = binding.addCatColor.text.toString().toInt()
 
                 // Create color resource and icon R.drawable.id and pass them into our Category instance
                 val catColor = colors.getColor(catColorIdx, -1)
                 val catIcon = icons.getResourceId(catIconIdx, -1)
->>>>>>> AddingDB
 
                 val newCategory = Category(null, catName, 0, catIcon, catColor)
 
                 // In order to insert new Category to our DB use Threads or
                 // TODO: Try using Coroutines in order to insert data to our DB
-                Thread{
+                Thread {
                     db.getDao().insert(newCategory)
                 }.start()
 
                 finish()
                 true
-            }else{
+            } else {
                 false
             }
         }
