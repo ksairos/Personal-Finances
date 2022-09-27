@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
-    private var launcher: ActivityResultLauncher<Intent>? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +31,8 @@ class MainActivity : AppCompatActivity() {
                 binding.categoryName.text = category.name
                 binding.categoryIcon.setBackgroundColor(category.color)
                 binding.categoryIcon.setIconResource(category.icon)
+                val text = "$" + category.expanses.toString()
+                binding.categoryPrice.text = text
             }
         }
 
