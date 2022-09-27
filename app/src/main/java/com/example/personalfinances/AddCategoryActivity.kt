@@ -29,8 +29,8 @@ class AddCategoryActivity : AppCompatActivity() {
                 Log.d(TAG, "CREATED NAME $catName")
 
                 // TODO: Create dialog for choosing colors and icons
-                val catColor = 1
-                val catIcon = 3
+                val catColor = binding.addCatColor.text?.toString()?.toInt()
+                val catIcon = binding.addCatIcon.text?.toString()?.toInt()
 
                 // Create intent, send there our data and finish this activity
                 val intent = Intent()
