@@ -22,7 +22,7 @@ class AddCategoryActivity : AppCompatActivity() {
         val colors = resources.obtainTypedArray(R.array.colors)
 
         // Initialize our DataBase
-//        val db = MainDb.getDb(this)
+        val db = MainDb.getDb(this)
 
         // Listener for Cancel button
         binding.topAppBar.setNavigationOnClickListener { setResult(RESULT_CANCELED) }
@@ -40,26 +40,22 @@ class AddCategoryActivity : AppCompatActivity() {
                 val catColorIdx = binding.addCatIcon.text.toString().toInt()
                 val catIconIdx = binding.addCatColor.text.toString().toInt()
 
-//                val catColor = colors.getColor(catColorIdx, -1)
-//                val catIcon = icons.getDrawable(catIconIdx)
+                val catColor = colors.getColor(catColorIdx, -1)
+                val catIcon = icons.getResourceId(catIconIdx, -1)
 
-//                val newCategory = Category(null, catName, 0, catIcon, catColor)
-//
-//                Thread{
-//                    db.getDao().insert(newCategory)
-//                }.start()
+                val newCategory = Category(null, catName, 0, catIcon, catColor)
 
-                // Create intent, send there our data and finish this activity
-                val intent = Intent()
-                intent.putExtra(Utils.CAT_NAME_KEY, catName)
-                intent.putExtra(Utils.CAT_ICON_KEY, catIconIdx)
-                intent.putExtra(Utils.CAT_COLOR_KEY, catColorIdx)
+                Thread{
+                    db.getDao().insert(newCategory)
+                }.start()
 
+//                // Create intent, send there our data and finish this activity
+//                val intent = Intent()
 //                intent.putExtra(Utils.CAT_NAME_KEY, catName)
 //                intent.putExtra(Utils.CAT_ICON_KEY, catIcon)
 //                intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
 
-                setResult(RESULT_OK, intent)
+//                setResult(RESULT_OK, intent)
                 finish()
                 true
             }else{

@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         val icons = resources.obtainTypedArray(R.array.icons)
         val colors = resources.obtainTypedArray(R.array.colors)
 
-//        val db = MainDb.getDb(this)
-//        db.getDao().getAll()
+        val db = MainDb.getDb(this)
+        db.getDao().getAll()
 
         // this launcher allows us to get results from our another activity
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
