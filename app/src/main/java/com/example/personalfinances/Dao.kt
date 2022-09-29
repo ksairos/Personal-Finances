@@ -7,11 +7,11 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface Dao {
+interface CatDao {
     @Insert
     fun insert(category: Category)
     @Query("SELECT * FROM category")
-    fun getAll(): Flow<List<Category>>
+    fun getAll(): List<Category>
     @Delete
     fun delete(category: Category)
     @Query("DELETE FROM category")

@@ -1,20 +1,24 @@
 package com.example.personalfinances
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.personalfinances.databinding.CategoryItemMainBinding
 
-class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.PlaceHolder>() {
+class CategoryAdapter(private val allCategories: List<Category>): RecyclerView.Adapter<CategoryAdapter.PlaceHolder>() {
 
     class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = CategoryItemMainBinding.bind(item)
 
         fun bind(category: Category) = with(binding){
             categoryName.text = category.name
+            categoryIcon.setBackgroundColor(category.color)
             categoryIcon.setIconResource(category.icon)
-            categoryPrice.text = category.expanses.toString()
+            val text = "$" + category.expanses.toString()
+            categoryPrice.text = text
         }
     }
 
@@ -24,12 +28,20 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.PlaceHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlaceHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(allCategories[position])
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return allCategories.size
     }
+
+    // TODO: Try using Intent to send the data from AddCategoryActivity to MainActivity and use addCategory() there
+//    fun addCategory(newCategory: Category, db: MainDb){
+//        Thread {
+//            db.getDao().insert(newCategory)
+//            notifyItemInserted(-1)
+//        }.start()
+//    }
 
 
 }

@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database (entities = [Category::class], version = 1)
 abstract class MainDb : RoomDatabase() {
 
-    abstract fun getDao(): Dao
+    abstract fun getDao(): CatDao
 
     companion object{
         fun getDb(context: Context): MainDb{
@@ -18,7 +18,5 @@ abstract class MainDb : RoomDatabase() {
                 "test.db"
             ).build()
         }
-
-
     }
 }
