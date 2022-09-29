@@ -9,11 +9,11 @@ data class Category(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo(name = "name")
-    var name: String,
+    var name: String?,
     @ColumnInfo(name = "expanses")
     var expanses: Int = 0,
     @ColumnInfo(name = "icon")
-    var icon: Int,
+    var icon: Int?,
     @ColumnInfo(name = "color")
-    var color: Int,
+    var color: Int?,
 )

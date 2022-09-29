@@ -15,8 +15,8 @@ class CategoryAdapter(private val allCategories: List<Category>): RecyclerView.A
 
         fun bind(category: Category) = with(binding){
             categoryName.text = category.name
-            categoryIcon.setBackgroundColor(category.color)
-            categoryIcon.setIconResource(category.icon)
+            category.color?.let { categoryIcon.setBackgroundColor(it) }
+            category.icon?.let { categoryIcon.setIconResource(it) }
             val text = "$" + category.expanses.toString()
             categoryPrice.text = text
         }
@@ -36,12 +36,10 @@ class CategoryAdapter(private val allCategories: List<Category>): RecyclerView.A
     }
 
     // TODO: Try using Intent to send the data from AddCategoryActivity to MainActivity and use addCategory() there
-//    fun addCategory(newCategory: Category, db: MainDb){
-//        Thread {
-//            db.getDao().insert(newCategory)
-//            notifyItemInserted(-1)
-//        }.start()
-//    }
-
-
+    fun addCategory(newCategory: Category, db: MainDb){
+        Thread {
+            db.getDao().insert(newCategory)
+            notifyDataSetChanged()
+        }.start()
+    }
 }

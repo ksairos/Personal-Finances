@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
+    private var launcher: ActivityResultLauncher<Intent>? = null
+    private lateinit var adapter: CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,34 @@ class MainActivity : AppCompatActivity() {
 //                binding.categoryPrice.text = text
 //            }
 //        }
+
+        // this launcher allows us to get results from our another activity
         init(db)
+        launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+                result: ActivityResult ->
+            when (result.resultCode) {
+                RESULT_OK -> {
+
+                    val catName = result.data?.getStringExtra(Utils.CAT_NAME_KEY)
+                    val catColor = result.data?.getIntExtra(Utils.CAT_COLOR_KEY, 0)
+                    val catIcon = result.data?.getIntExtra(Utils.CAT_ICON_KEY, 0)
+
+                    val newCategory = Category(null, catName, 0, catIcon, catColor)
+
+                    // In order to insert new Category to our DB use Threads or
+                    // TODO: Try using Coroutines in order to insert data to our DB
+                    adapter.addCategory(newCategory, db)
+
+                    Toast.makeText(this, "A new category is added", Toast.LENGTH_SHORT).show()
+                }
+                RESULT_CANCELED -> {
+                    Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun init(db: MainDb){
@@ -44,13 +73,14 @@ class MainActivity : AppCompatActivity() {
             categoryRecView.layoutManager = GridLayoutManager(this@MainActivity, 4)
 
             Thread{
-                categoryRecView.adapter = CategoryAdapter(db.getDao().getAll())
+                adapter = CategoryAdapter(db.getDao().getAll())
             }.start()
+            categoryRecView.adapter = adapter
 
             // Set Listener for FAB that creates new categories
             addCategoryFab.setOnClickListener {
                 val intent = Intent(this@MainActivity, AddCategoryActivity::class.java)
-                startActivity(intent)
+                launcher?.launch(intent)
             }
 
         }
