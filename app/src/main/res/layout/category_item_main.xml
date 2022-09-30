@@ -5,12 +5,15 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/category_name"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:ellipsize="marquee"
+        android:maxLines="1"
         android:text="@string/category" />
 
     <com.google.android.material.button.MaterialButton
