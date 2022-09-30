@@ -1,47 +1,37 @@
 package com.example.personalfinances
 
 import android.content.Intent
-import android.content.res.TypedArray
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.asLiveData
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.personalfinances.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
-    private var launcher: ActivityResultLauncher<Intent>? = null
     private lateinit var adapter: CategoryAdapter
+    private val catDb by lazy { MainDb.getDb(this).catDao() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize our DB
-        val db = MainDb.getDb(this)
-        // Use LiveData to observe the data in our Database
-//        db.getDao().getAll().asLiveData().observe(this){
-//            it.forEach{ category ->
-//                binding.categoryName.text = category.name
-//                binding.categoryIcon.setBackgroundColor(category.color)
-//                binding.categoryIcon.setIconResource(category.icon)
-//                val text = "$" + category.expanses.toString()
-//                binding.categoryPrice.text = text
-//            }
-//        }
+        init()
 
-        // this launcher allows us to get results from our another activity
-        init(db)
-        launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-                result: ActivityResult ->
+        observeCatDb()
+    }
+
+    // this launcher allows us to get results from our another activity
+    private var launcher: ActivityResultLauncher<Intent>? =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             when (result.resultCode) {
                 RESULT_OK -> {
 
@@ -51,10 +41,9 @@ class MainActivity : AppCompatActivity() {
 
                     val newCategory = Category(null, catName, 0, catIcon, catColor)
 
-                    // In order to insert new Category to our DB use Threads or
-                    // TODO: Try using Coroutines in order to insert data to our DB
-                    adapter.addCategory(newCategory, db)
-
+                    lifecycleScope.launch {
+                        catDb.insert(newCategory)
+                    }
                     Toast.makeText(this, "A new category is added", Toast.LENGTH_SHORT).show()
                 }
                 RESULT_CANCELED -> {
@@ -65,16 +54,27 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+    /*
+    This function is used to observe changes in our database. Whenever data is changed, the code in
+    the curly braces us run. In our case this updates the content in our adapter.
+     */
+    private fun observeCatDb() {
+        lifecycleScope.launch {
+            catDb.getAll().collect { categoryList ->
+                if (categoryList.isNotEmpty()) {
+                    adapter.submitList(categoryList)
+                }
+            }
+        }
     }
 
-    private fun init(db: MainDb){
-        binding.apply{
-
+    // This function is used to initialize views and their inner content
+    private fun init() {
+        binding.apply {
+            // Set Recycler View
             categoryRecView.layoutManager = GridLayoutManager(this@MainActivity, 4)
-
-            Thread{
-                adapter = CategoryAdapter(db.getDao().getAll())
-            }.start()
+            adapter = CategoryAdapter()
             categoryRecView.adapter = adapter
 
             // Set Listener for FAB that creates new categories

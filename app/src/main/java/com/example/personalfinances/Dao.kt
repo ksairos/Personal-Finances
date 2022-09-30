@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CatDao {
     @Insert
-    fun insert(category: Category)
+    suspend fun insert(category: Category)
     @Query("SELECT * FROM category")
-    fun getAll(): List<Category>
+    fun getAll(): Flow<List<Category>>
     @Delete
-    fun delete(category: Category)
+    suspend fun delete(category: Category)
     @Query("DELETE FROM category")
-    fun nukeCats()
+    suspend fun nukeCats()
 }

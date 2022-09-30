@@ -1,5 +1,6 @@
 package com.example.personalfinances
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -19,9 +20,6 @@ class AddCategoryActivity : AppCompatActivity() {
         val icons = resources.obtainTypedArray(R.array.icons)
         val colors = resources.obtainTypedArray(R.array.colors)
 
-        // Initialize our DataBase
-        val db = MainDb.getDb(this)
-
         // Listener for Cancel button
         binding.topAppBar.setNavigationOnClickListener {
             setResult(RESULT_CANCELED, intent)
@@ -34,7 +32,6 @@ class AddCategoryActivity : AppCompatActivity() {
 
                 // Collect data from Inputs
                 val catName = binding.addCatName.text.toString()
-                Log.d(TAG, "CREATED NAME $catName")
 
                 // For now we will use TextEdit to create Icon and Color of Category
                 // TODO: Create dialog for choosing colors and icons
@@ -45,6 +42,7 @@ class AddCategoryActivity : AppCompatActivity() {
                 val catColor = colors.getColor(catColorIdx, -1)
                 val catIcon = icons.getResourceId(catIconIdx, -1)
 
+                intent = Intent()
                 intent.putExtra(Utils.CAT_NAME_KEY, catName)
                 intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
                 intent.putExtra(Utils.CAT_ICON_KEY, catIcon)

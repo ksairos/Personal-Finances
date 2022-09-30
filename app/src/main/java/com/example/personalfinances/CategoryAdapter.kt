@@ -1,14 +1,15 @@
 package com.example.personalfinances
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.personalfinances.databinding.CategoryItemMainBinding
 
-class CategoryAdapter(private val allCategories: List<Category>): RecyclerView.Adapter<CategoryAdapter.PlaceHolder>() {
+// Here we are using ListAdapter instead of usual RecyclerView.Adapter and pass there DiffCallback
+class CategoryAdapter: ListAdapter<Category, CategoryAdapter.PlaceHolder>(DiffCallback()) {
 
     class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = CategoryItemMainBinding.bind(item)
@@ -28,18 +29,16 @@ class CategoryAdapter(private val allCategories: List<Category>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: PlaceHolder, position: Int) {
-        holder.bind(allCategories[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return allCategories.size
+    // DiffUtil implementation
+    class DiffCallback : DiffUtil.ItemCallback<Category>() {
+        override fun areItemsTheSame(oldItem: Category, newItem: Category) =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: Category, newItem: Category) =
+            oldItem == newItem
     }
 
-    // TODO: Try using Intent to send the data from AddCategoryActivity to MainActivity and use addCategory() there
-    fun addCategory(newCategory: Category, db: MainDb){
-        Thread {
-            db.getDao().insert(newCategory)
-            notifyDataSetChanged()
-        }.start()
-    }
 }
