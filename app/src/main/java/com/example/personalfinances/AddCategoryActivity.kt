@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.personalfinances.databinding.ActivityAddCategoryBinding
+import kotlin.math.truncate
 
 class AddCategoryActivity : AppCompatActivity() {
 
@@ -33,27 +34,43 @@ class AddCategoryActivity : AppCompatActivity() {
                 // Collect data from Inputs
                 val catName = binding.addCatName.text.toString()
 
-                // For now we will use TextEdit to create Icon and Color of Category
-                // TODO: Create dialog for choosing colors and icons
-                val catColorIdx = binding.addCatIcon.text.toString().toInt()
-                val catIconIdx = binding.addCatColor.text.toString().toInt()
+                // Category name validation
+                if (validateCatName(catName) == null){
 
-                // Create color resource and icon R.drawable.id and pass them into our Category instance
-                val catColor = colors.getColor(catColorIdx, -1)
-                val catIcon = icons.getResourceId(catIconIdx, -1)
+                    // For now we will use TextEdit to create Icon and Color of Category
+                    // TODO: Create dialog for choosing colors and icons. Don't forget to add a default values
+                    val catColorIdx = binding.addCatIcon.text.toString().toInt()
+                    val catIconIdx = binding.addCatColor.text.toString().toInt()
 
-                intent = Intent()
-                intent.putExtra(Utils.CAT_NAME_KEY, catName)
-                intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
-                intent.putExtra(Utils.CAT_ICON_KEY, catIcon)
+                    // Create color resource and icon R.drawable.id and pass them into our Category instance
+                    val catColor = colors.getColor(catColorIdx, -1)
+                    val catIcon = icons.getResourceId(catIconIdx, -1)
 
-                setResult(RESULT_OK, intent)
-                finish()
+                    // Sending the data back to the MainActivity
+                    intent = Intent()
+                    intent.putExtra(Utils.CAT_NAME_KEY, catName)
+                    intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
+                    intent.putExtra(Utils.CAT_ICON_KEY, catIcon)
+
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }else{
+                    // Display error
+                    binding.addCatTxtLayoutName.helperText = validateCatName(catName)
+                }
                 true
             } else {
                 false
             }
         }
 
+    }
+
+    // From using empty category name and the name with more than 20 symbols
+    private fun validateCatName(catName: String): String? {
+        if (catName == "" || catName.length > 20) {
+            return "Required field"
+        }
+        return null
     }
 }
