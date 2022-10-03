@@ -17,5 +17,5 @@ interface CatDao {
     @Query("DELETE FROM category")
     suspend fun nukeCats()
     @Query("SELECT SUM(expanses) as sum_expanses FROM category")
-    suspend fun expansesSum(): Long
+    suspend fun expansesSum(): Long?
 }
