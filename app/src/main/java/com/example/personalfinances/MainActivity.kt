@@ -64,6 +64,9 @@ class MainActivity : AppCompatActivity() {
             catDb.getAll().collect { categoryList ->
                 if (categoryList.isNotEmpty()) {
                     adapter.submitList(categoryList)
+
+                // Set top bar data
+                binding.toolBar.title = catDb.expansesSum().toString()
                 }
             }
         }
@@ -83,6 +86,8 @@ class MainActivity : AppCompatActivity() {
                 launcher?.launch(intent)
             }
 
+            // Set selected item to be Categories
+            botNav.selectedItemId = R.id.bot_nav_categories
         }
     }
 }
