@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.personalfinances.databinding.CategoryItemMainBinding
+import com.example.personalfinances.data.Category
+import com.example.personalfinances.databinding.CategoryItemRecviewBinding
 
 // Here we are using ListAdapter instead of usual RecyclerView.Adapter and pass there DiffCallback
-class CategoryAdapter: ListAdapter<Category, CategoryAdapter.PlaceHolder>(DiffCallback()) {
+class CategoryAdapter: ListAdapter<Category, CategoryAdapter.ViewHolder>(DiffCallback()) {
 
-    class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
-        private val binding = CategoryItemMainBinding.bind(item)
+    class ViewHolder(item: View): RecyclerView.ViewHolder(item) {
+        private val binding = CategoryItemRecviewBinding.bind(item)
 
         fun bind(category: Category) = with(binding){
             categoryName.text = category.name
@@ -23,12 +24,12 @@ class CategoryAdapter: ListAdapter<Category, CategoryAdapter.PlaceHolder>(DiffCa
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item_main, parent, false)
-        return PlaceHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item_recview, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PlaceHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 

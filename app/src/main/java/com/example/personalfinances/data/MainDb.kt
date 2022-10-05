@@ -1,17 +1,23 @@
-package com.example.personalfinances
+package com.example.personalfinances.data
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import kotlinx.coroutines.internal.synchronized
+import com.example.personalfinances.AccDao
+import com.example.personalfinances.CatDao
 
-@Database (entities = [Category::class], exportSchema = true, version = 1)
+@Database (entities = [Category::class, Account::class],
+    exportSchema = true,
+    version = 1
+)
 abstract class MainDb : RoomDatabase()
 // TODO: Create TypeConverter for dates - https://johncodeos.com/how-to-use-room-in-android-using-kotlin/
 {
 
     abstract fun catDao(): CatDao
+    abstract fun accDao(): AccDao
 
     companion object {
 
@@ -30,7 +36,7 @@ abstract class MainDb : RoomDatabase()
             return Room.databaseBuilder(
                 context.applicationContext,
                 MainDb::class.java,
-                "test.db"
+                "local.db"
             ).build()
         }
     }

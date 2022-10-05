@@ -9,6 +9,13 @@ class Utils {
         const val CAT_ICON_KEY: String = "catIconKey"
         const val CAT_COLOR_KEY: String = "catColorKey"
 
+        const val ACC_COLOR_KEY: String = "accColorKey"
+        const val ACC_NAME_KEY: String = "accNameKey"
+        const val ACC_ICON_KEY: String = "accIconKey"
+        const val ACC_BALANCE_KEY: String = "accBalanceKey"
+
+
+
 //        val ICONS = listOf(
 //            R.drawable.ic_outline_transport_48,
 //            R.drawable.ic_outline_card_giftcard_48,

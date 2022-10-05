@@ -1,12 +1,11 @@
 package com.example.personalfinances
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.ActivityMainBinding
-import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {

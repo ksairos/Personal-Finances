@@ -11,9 +11,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.personalfinances.data.Category
+import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.FragmentCategoriesBinding
 import kotlinx.coroutines.launch
 
@@ -28,6 +29,7 @@ class CategoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCategoriesBinding.inflate(layoutInflater)
+
         // Set Recycler View
         binding.categoryRecView.layoutManager = GridLayoutManager(requireActivity(), 4)
         adapter = CategoryAdapter()
@@ -93,6 +95,5 @@ the curly braces us run. In our case this updates the content in our adapter.
             }
         }
     }
-
 
 }
