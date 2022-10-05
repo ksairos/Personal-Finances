@@ -1,4 +1,4 @@
-package com.example.personalfinances
+package com.example.personalfinances.categories
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.personalfinances.R
 import com.example.personalfinances.data.Category
 import com.example.personalfinances.databinding.CategoryItemRecviewBinding
 

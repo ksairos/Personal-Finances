@@ -1,9 +1,11 @@
-package com.example.personalfinances
+package com.example.personalfinances.accounts
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.personalfinances.R
+import com.example.personalfinances.Utils
 import com.example.personalfinances.databinding.ActivityAddAccountBinding
 
 class AddAccountActivity : AppCompatActivity() {

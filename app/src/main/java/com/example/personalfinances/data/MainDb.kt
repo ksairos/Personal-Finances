@@ -1,12 +1,9 @@
 package com.example.personalfinances.data
 
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.personalfinances.AccDao
-import com.example.personalfinances.CatDao
 
 @Database (entities = [Category::class, Account::class],
     exportSchema = true,

@@ -1,10 +1,8 @@
-package com.example.personalfinances
+package com.example.personalfinances.accounts
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -12,28 +10,29 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.personalfinances.data.Category
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.personalfinances.Utils
+import com.example.personalfinances.data.Account
 import com.example.personalfinances.data.MainDb
-import com.example.personalfinances.databinding.FragmentCategoriesBinding
+import com.example.personalfinances.databinding.FragmentAccountsBinding
 import kotlinx.coroutines.launch
 
-class CategoriesFragment : Fragment() {
+class AccountsFragment : Fragment() {
 
-    private lateinit var binding: FragmentCategoriesBinding
-    private lateinit var adapter: CategoryAdapter
-    private val catDb by lazy { MainDb.getDb(requireContext()).catDao() }
+    private lateinit var adapter: AccountsAdapter
+    private lateinit var binding: FragmentAccountsBinding
+    private val accDb by lazy { MainDb.getDb(requireContext()).accDao() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCategoriesBinding.inflate(layoutInflater)
+        binding = FragmentAccountsBinding.inflate(layoutInflater)
 
         // Set Recycler View
-        binding.categoryRecView.layoutManager = GridLayoutManager(requireActivity(), 4)
-        adapter = CategoryAdapter()
-        binding.categoryRecView.adapter = adapter
+        binding.accountsRecView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = AccountsAdapter()
+        binding.accountsRecView.adapter = adapter
 
         return binding.root
     }
@@ -50,16 +49,17 @@ class CategoriesFragment : Fragment() {
             when (result.resultCode) {
                 AppCompatActivity.RESULT_OK -> {
 
-                    val catName = result.data?.getStringExtra(Utils.CAT_NAME_KEY)
-                    val catColor = result.data?.getIntExtra(Utils.CAT_COLOR_KEY, 0)
-                    val catIcon = result.data?.getIntExtra(Utils.CAT_ICON_KEY, 0)
+                    val accName = result.data?.getStringExtra(Utils.ACC_NAME_KEY)
+                    val accColor = result.data?.getIntExtra(Utils.ACC_COLOR_KEY, 0)
+                    val accIcon = result.data?.getIntExtra(Utils.ACC_ICON_KEY, 0)
+                    val accBalance = result.data?.getFloatExtra(Utils.ACC_BALANCE_KEY, 0.toFloat())
 
-                    val newCategory = Category(null, catName, 0, catIcon, catColor)
+                    val newAccount = Account(null, accName, accBalance, false, accIcon, accColor)
 
                     lifecycleScope.launch {
-                        catDb.insert(newCategory)
+                        accDb.insert(newAccount)
                     }
-                    Toast.makeText(requireActivity(), "A new category is added", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "A new account is added", Toast.LENGTH_SHORT).show()
                 }
                 AppCompatActivity.RESULT_CANCELED -> {
                     Toast.makeText(requireActivity(), "Canceled", Toast.LENGTH_SHORT).show()
@@ -73,13 +73,12 @@ class CategoriesFragment : Fragment() {
     /*
 This function is used to observe changes in our database. Whenever data is changed, the code in
 the curly braces us run. In our case this updates the content in our adapter.
- */
+*/
     private fun observeCatDb() {
         lifecycleScope.launch {
-            catDb.getAll().collect { categoryList ->
-                if (categoryList.isNotEmpty()) {
-                    adapter.submitList(categoryList)
-
+            accDb.getAll().collect { accountList ->
+                if (accountList.isNotEmpty()) {
+                    adapter.submitList(accountList)
                 }
             }
         }
@@ -88,12 +87,11 @@ the curly braces us run. In our case this updates the content in our adapter.
     // This function is used to initialize views and their inner content
     private fun init() {
         binding.apply {
-            // Set Listener for FAB that creates new categories
-            addCategoryFab.setOnClickListener {
-                val intent = Intent(requireActivity(), AddCategoryActivity::class.java)
+            // Set Listener for FAB that creates new accounts
+            addAccountFab.setOnClickListener {
+                val intent = Intent(requireActivity(), AddAccountActivity::class.java)
                 launcher?.launch(intent)
             }
         }
     }
-
 }

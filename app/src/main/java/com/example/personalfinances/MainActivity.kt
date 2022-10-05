@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.personalfinances.accounts.AccountsFragment
+import com.example.personalfinances.categories.CategoriesFragment
 import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
@@ -13,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
 
-    private val catDb by lazy { MainDb.getDb(this).catDao() }
+    private val accDb by lazy { MainDb.getDb(this).accDao() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +35,12 @@ class MainActivity : AppCompatActivity() {
     // TODO: Add dependency injection (Dagger) to avoid database initialization everytime
     private fun observeCatDb() {
         lifecycleScope.launch {
-            catDb.getAll().collect {
+            accDb.getAll().collect {
                 // Set top bar data
-                binding.toolBar.title = "$${catDb.expansesSum().toString()}"
+                val balance = accDb.sumBalance()
+                if (balance != null) binding.toolBar.title = "$${balance}"
+                else binding.toolBar.title = "$0"
+
             }
         }
     }

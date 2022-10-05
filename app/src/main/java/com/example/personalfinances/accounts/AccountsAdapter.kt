@@ -1,4 +1,4 @@
-package com.example.personalfinances
+package com.example.personalfinances.accounts
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.personalfinances.R
 import com.example.personalfinances.data.Account
 import com.example.personalfinances.databinding.AccountItemRecviewBinding
 
 
-class AccountAdapter: ListAdapter<Account, AccountAdapter.ViewHolder>(DiffCallback()) {
+class AccountsAdapter: ListAdapter<Account, AccountsAdapter.ViewHolder>(DiffCallback()) {
 
     class ViewHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = AccountItemRecviewBinding.bind(item)

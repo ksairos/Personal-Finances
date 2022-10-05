@@ -1,11 +1,11 @@
-package com.example.personalfinances
+package com.example.personalfinances.categories
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.personalfinances.R
+import com.example.personalfinances.Utils
 import com.example.personalfinances.databinding.ActivityAddCategoryBinding
-import kotlin.math.truncate
 
 class AddCategoryActivity : AppCompatActivity() {
 

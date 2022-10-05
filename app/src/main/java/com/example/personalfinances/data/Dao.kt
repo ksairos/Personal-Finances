@@ -1,4 +1,4 @@
-package com.example.personalfinances
+package com.example.personalfinances.data
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -32,6 +32,8 @@ interface AccDao {
     suspend fun delete(account: Account)
     @Query("DELETE FROM account")
     suspend fun nukeAccs()
+    @Query("SELECT SUM(balance) as sum_balance FROM account")
+    suspend fun sumBalance(): Long?
 //    @Query("SELECT * FROM account WHERE favorite=1")
 //    suspend fun selectFavoriteAccount()
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountsFragment">
+    tools:context=".accounts.AccountsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/accounts_rec_view"

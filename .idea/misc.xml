@@ -24,7 +24,8 @@
         <entry key="app/src/main/res/layout/category_item_main.xml" value="0.2868972778320313" />
         <entry key="app/src/main/res/layout/category_item_recview.xml" value="0.3967025756835938" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3458333333333333" />
-        <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.31614583333333335" />
