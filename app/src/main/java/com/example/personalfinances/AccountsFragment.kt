@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.personalfinances.data.Account
-import com.example.personalfinances.data.Category
 import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.FragmentAccountsBinding
 import kotlinx.coroutines.launch

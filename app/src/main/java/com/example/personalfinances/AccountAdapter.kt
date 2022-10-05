@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.personalfinances.data.Account
 import com.example.personalfinances.databinding.AccountItemRecviewBinding
 
+
 class AccountAdapter: ListAdapter<Account, AccountAdapter.ViewHolder>(DiffCallback()) {
 
     class ViewHolder(item: View): RecyclerView.ViewHolder(item){
@@ -33,7 +34,7 @@ class AccountAdapter: ListAdapter<Account, AccountAdapter.ViewHolder>(DiffCallba
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item_recview, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.account_item_recview, parent, false)
         return ViewHolder(view)
     }
 
