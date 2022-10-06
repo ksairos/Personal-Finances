@@ -12,7 +12,7 @@
     <string name="add_a_new_category">Add a new category</string>
     <string name="name">Name</string>
     <string name="new_category">New Category</string>
-    <string name="confirm">confirm</string>
+    <string name="confirm">Confirm</string>
     <string name="color">Color</string>
     <string name="icon">Icon</string>
     <string name="required_field">Required field</string>
@@ -23,4 +23,9 @@
     <string name="account_balance">Account Balance</string>
     <string name="balance">Balance</string>
     <string name="new_account">New Account</string>
+    <string name="create_transaction">Create transaction</string>
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="transaction_amount">Transaction amount</string>
+    <string name="transaction_date">Transaction date</string>
 </resources>
