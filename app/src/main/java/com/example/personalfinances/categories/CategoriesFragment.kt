@@ -33,7 +33,7 @@ class CategoriesFragment : Fragment() {
 
         // Set Recycler View
         binding.categoryRecView.layoutManager = GridLayoutManager(requireActivity(), 4)
-        adapter = CategoryAdapter()
+        adapter = CategoryAdapter(context)
         binding.categoryRecView.adapter = adapter
 
         return binding.root

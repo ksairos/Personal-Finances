@@ -4,103 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
-    tools:context=".bottomsheets.MakeTransactionFragment">
+    tools:context=".MakeTransactionActivity">
 
-    <TextView
-        android:id="@+id/create_transaction_textView"
-        style="@style/MaterialAlertDialog.Material3.Title.Text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/create_transaction"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/create_transaction_confirmBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/choose_transaction_from_label"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/create_transaction_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/from"
-        app:layout_constraintTop_toBottomOf="@+id/create_transaction_textView" />
-
-    <Spinner
-        android:id="@+id/choose_transaction_from"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transaction_from_label" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:layout_marginTop="15dp"
-        android:id="@+id/choose_transaction_to_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/to"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transaction_from" />
-
-    <Spinner
-        android:id="@+id/choose_transaction_to"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transaction_to_label" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-        android:id="@+id/create_transaction_amount_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="@string/transaction_amount"
-        app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_transaction_to">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/create_transaction_amount_editText"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/toolbar_confirm"
+            app:navigationIcon="@drawable/ic_outline_close_24"
+            app:title="@string/create_transaction" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_transaction_appBarLayout"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:id="@+id/transaction_from_label"
+            style="@style/TextAppearance.Material3.LabelLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/from"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:inputType="numberSigned"
-            style="@style/MaterialAlertDialog.Material3.Body.Text"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/transaction_date"
-        app:cornerRadius="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_transaction_amount_layout" />
+        <TextView
+            android:id="@+id/transaction_from"
+            style="@style/TextAppearance.Material3.TitleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/from_this_account"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_from_label"
+            app:layout_constraintStart_toStartOf="@+id/transaction_from_label"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_from_label" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/create_transaction_confirmBtn"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_centerHorizontal="true"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:text="@string/confirm"
-        app:icon="@drawable/ic_outline_check_24"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/transaction_to_label"
+            style="@style/TextAppearance.Material3.LabelLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/to"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_from"
+            tools:layout_editor_absoluteX="15dp" />
+
+        <TextView
+            android:id="@+id/transaction_to"
+            style="@style/TextAppearance.Material3.TitleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/to_this_account"
+            app:layout_constraintEnd_toEndOf="@+id/transaction_to_label"
+            app:layout_constraintStart_toStartOf="@+id/transaction_to_label"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_to_label" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_transaction_amount_layout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/transaction_amount"
+            app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_to">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_transaction_amount_editText"
+                style="@style/MaterialAlertDialog.Material3.Body.Text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="numberSigned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/transaction_date"
+            app:cornerRadius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_transaction_amount_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

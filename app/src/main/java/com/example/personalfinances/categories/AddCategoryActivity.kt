@@ -23,6 +23,7 @@ class AddCategoryActivity : AppCompatActivity() {
 
         // Listener for Cancel button
         binding.topAppBar.setNavigationOnClickListener {
+            // TODO: Add alert dialog for canceling transaction
             setResult(RESULT_CANCELED, intent)
             finish()
         }
