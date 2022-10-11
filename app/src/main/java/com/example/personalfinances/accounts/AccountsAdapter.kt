@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.personalfinances.R
 import com.example.personalfinances.data.Account
 import com.example.personalfinances.databinding.AccountItemRecviewBinding
+import kotlin.math.roundToInt
 
 
 class AccountsAdapter: ListAdapter<Account, AccountsAdapter.ViewHolder>(DiffCallback()) {
@@ -18,7 +19,8 @@ class AccountsAdapter: ListAdapter<Account, AccountsAdapter.ViewHolder>(DiffCall
 
         fun bind(account: Account) = with(binding){
             accountName.text = account.name
-            accountBalance.text = String.format("$%.2f", account.balance)
+            val temp = "$${account.balance}"
+            accountBalance.text = temp
             account.icon?.let { accountIcon.setIconResource(it) }
             account.color?.let { accountIcon.setBackgroundColor(it) }
         }

@@ -1,6 +1,10 @@
 package com.example.personalfinances
 
 import android.content.res.Resources
+import androidx.room.TypeConverter
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.util.*
 
 class Utils {
     companion object{
@@ -14,8 +18,15 @@ class Utils {
         const val ACC_ICON_KEY: String = "accIconKey"
         const val ACC_BALANCE_KEY: String = "accBalanceKey"
 
-        const val TRANSACTION_FROM_KEY: String = "transactionFromKey"
+//        const val TRANSACTION_FROM_KEY: String = "transactionFromKey"
         const val TRANSACTION_TO_KEY: String = "transactionToKey"
+
+        // Round Float to two numbers after the floating point
+        fun roundDouble(number: Double?): Double?{
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.HALF_UP
+            return df.format(number)?.toDouble()
+        }
 
 
 
@@ -33,6 +44,19 @@ class Utils {
 //            R.color.m3_sys_light_on_error_container,
 //            R.color.my_green
 //        )
+    }
+
+    // This class allows us to convert the Date class into Long, because Date is not available for Room DB
+    class DateConverters {
+        @TypeConverter
+        fun toDate(value: Long?): Date? {
+            return value?.let { Date(it) }
+        }
+
+        @TypeConverter
+        fun fromDate(date: Date?): Long? {
+            return date?.time
+        }
     }
 
 }

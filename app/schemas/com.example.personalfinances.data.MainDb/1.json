@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bf8c94af3a1af07debb33199a7d3d1f2",
+    "identityHash": "e7191a9303f3c71dc884ad7b7d227e02",
     "entities": [
       {
         "tableName": "category",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `expanses` INTEGER NOT NULL, `icon` INTEGER, `color` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `expanses` REAL, `icon` INTEGER, `color` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -23,8 +23,8 @@
           {
             "fieldPath": "expanses",
             "columnName": "expanses",
-            "affinity": "INTEGER",
-            "notNull": true
+            "affinity": "REAL",
+            "notNull": false
           },
           {
             "fieldPath": "icon",
@@ -102,7 +102,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bf8c94af3a1af07debb33199a7d3d1f2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e7191a9303f3c71dc884ad7b7d227e02')"
     ]
   }
 }

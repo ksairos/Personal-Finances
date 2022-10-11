@@ -1,4 +1,4 @@
-package com.example.personalfinances.data
+    package com.example.personalfinances.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -11,7 +11,7 @@ data class Account(
     @ColumnInfo(name = "name")
     var name: String?,
     @ColumnInfo(name = "balance")
-    val balance: Float?,
+    val balance: Double?,
     @ColumnInfo(name = "favorite")
     var favorite: Boolean = false,
     @ColumnInfo(name = "icon")

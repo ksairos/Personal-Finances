@@ -7,6 +7,8 @@ import android.util.Log
 import com.example.personalfinances.R
 import com.example.personalfinances.Utils
 import com.example.personalfinances.databinding.ActivityAddAccountBinding
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class AddAccountActivity : AppCompatActivity() {
 
@@ -34,13 +36,13 @@ class AddAccountActivity : AppCompatActivity() {
 
                 // Collect data from Inputs
                 val accName = binding.addAccName.text.toString()
-                val accBalance = binding.addAccBalance.text.toString().toFloat()
+                val accBalance = Utils.roundDouble(binding.addAccBalance.text.toString().toDouble())
                 Log.d(TAG, "onCreate: My balance is $accBalance")
 
                 // Account name validation
                 if (validateAccName(accName) == null){
 
-                    // For now we will use TextEdit to create Icon and Color of Accegory
+                    // For now we will use TextEdit to create Icon and Color of Category
                     // TODO: Create dialog for choosing colors and icons. Don't forget to add a default values
                     val accColorIdx = binding.addAccIcon.text.toString().toInt()
                     val accIconIdx = binding.addAccColor.text.toString().toInt()

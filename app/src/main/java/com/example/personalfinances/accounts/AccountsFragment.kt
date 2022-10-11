@@ -52,7 +52,7 @@ class AccountsFragment : Fragment() {
                     val accName = result.data?.getStringExtra(Utils.ACC_NAME_KEY)
                     val accColor = result.data?.getIntExtra(Utils.ACC_COLOR_KEY, 0)
                     val accIcon = result.data?.getIntExtra(Utils.ACC_ICON_KEY, 0)
-                    val accBalance = result.data?.getFloatExtra(Utils.ACC_BALANCE_KEY, 0.toFloat())
+                    val accBalance = result.data?.getDoubleExtra(Utils.ACC_BALANCE_KEY, 0.toDouble())
 
                     val newAccount = Account(null, accName, accBalance, false, accIcon, accColor)
 

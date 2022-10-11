@@ -55,7 +55,7 @@ class CategoriesFragment : Fragment() {
                     val catColor = result.data?.getIntExtra(Utils.CAT_COLOR_KEY, 0)
                     val catIcon = result.data?.getIntExtra(Utils.CAT_ICON_KEY, 0)
 
-                    val newCategory = Category(null, catName, 0, catIcon, catColor)
+                    val newCategory = Category(null, catName, 0.0, catIcon, catColor)
 
                     lifecycleScope.launch {
                         catDb.insert(newCategory)
