@@ -44,25 +44,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/transaction_from"
-            style="@style/TextAppearance.Material3.TitleLarge"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/accounts_spinner"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/from_this_account"
-            app:layout_constraintEnd_toEndOf="@+id/transaction_from_label"
-            app:layout_constraintStart_toStartOf="@+id/transaction_from_label"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_from_label" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_from_label"/>
 
         <TextView
             android:id="@+id/transaction_to_label"
             style="@style/TextAppearance.Material3.LabelLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/to"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_from"
+            app:layout_constraintTop_toBottomOf="@+id/accounts_spinner"
             tools:layout_editor_absoluteX="15dp" />
 
         <TextView
@@ -71,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/to_this_account"
+            android:text="@string/choose_the_recipient"
             app:layout_constraintEnd_toEndOf="@+id/transaction_to_label"
             app:layout_constraintStart_toStartOf="@+id/transaction_to_label"
             app:layout_constraintTop_toBottomOf="@+id/transaction_to_label" />

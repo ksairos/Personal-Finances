@@ -4,8 +4,6 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.personalfinances.data.Account
-import com.example.personalfinances.data.Category
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -34,6 +32,18 @@ interface AccDao {
     suspend fun nukeAccs()
     @Query("SELECT SUM(balance) as sum_balance FROM account")
     suspend fun sumBalance(): Long?
+    @Query("SELECT id FROM account")
+    fun getAllIds(): List<Int?>
 //    @Query("SELECT * FROM account WHERE favorite=1")
 //    suspend fun selectFavoriteAccount()
+}
+
+@Dao
+interface TransactionDao {
+    @Insert
+    suspend fun insert(transaction: Transaction)
+    @Query("SELECT * FROM transactions")
+    suspend fun getAll(): Flow<List<Transaction>>
+    @Delete
+    suspend fun delete(transaction: Transaction)
 }

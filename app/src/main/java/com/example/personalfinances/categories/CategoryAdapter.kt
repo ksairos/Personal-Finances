@@ -28,13 +28,13 @@ class CategoryAdapter(private val mContext: Context?): ListAdapter<Category, Cat
             category.icon?.let { categoryIcon.setIconResource(it) }
             val text = "$" + category.expanses?.toString()
             categoryPrice.text = text
-            categoryIcon.setOnClickListener{ startTransaction(mContext) }
+            categoryIcon.setOnClickListener{ startTransaction(mContext, category.id) }
 
         }
 
-        private fun startTransaction(mContext: Context?) {
+        private fun startTransaction(mContext: Context?, categoryId: Int?) {
             val intent = Intent(mContext, MakeTransactionActivity::class.java)
-            intent.putExtra(Utils.TRANSACTION_TO_KEY, binding.categoryName.text.toString())
+            intent.putExtra(Utils.TRANSACTION_TO_KEY, categoryId)
             mContext?.startActivity(intent)
         }
     }

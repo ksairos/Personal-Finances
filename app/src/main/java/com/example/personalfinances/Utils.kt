@@ -18,7 +18,7 @@ class Utils {
         const val ACC_ICON_KEY: String = "accIconKey"
         const val ACC_BALANCE_KEY: String = "accBalanceKey"
 
-//        const val TRANSACTION_FROM_KEY: String = "transactionFromKey"
+        const val TRANSACTION_FROM_KEY: String = "transactionFromKey"
         const val TRANSACTION_TO_KEY: String = "transactionToKey"
 
         // Round Float to two numbers after the floating point
