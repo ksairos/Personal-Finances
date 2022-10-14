@@ -5,7 +5,10 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.ActivityMakeTransactionBinding
@@ -16,14 +19,23 @@ import java.util.*
 class MakeTransactionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMakeTransactionBinding
+    // Calendar for a date picker
     private val myCalendar = Calendar.getInstance()
-    private val mainDb by lazy { MainDb.getDb(this) }
-    private lateinit var accIds: List<Int?>
+    // Get an instance of our database
+//    private val mainDb by lazy { MainDb.getDb(this, )}
+
+    private lateinit var nameIdMap: Map<String?, Int?>
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMakeTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize the ViewModel for our Activity
+
+//        val viewModelFactory = MakeTransactionActivityViewModel.
 
         // Listener for a Cancel button
         binding.topAppBar.setNavigationOnClickListener {
@@ -35,18 +47,17 @@ class MakeTransactionActivity : AppCompatActivity() {
         binding.topAppBar.setOnMenuItemClickListener { true }
 
         lifecycleScope.launch{
-            accIds = mainDb.accDao().getAllIds()
+
+            ArrayAdapter(this@MakeTransactionActivity, android.R.layout.simple_spinner_item, nameIdMap.keys.toList())
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.accountsSpinner.adapter = adapter}
         }
 
-        ArrayAdapter(this, R.layout.activity_make_transaction, accIds)
-            .also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.accountsSpinner.adapter = adapter}
-
         binding.accountsSpinner
-
         // Set the name of the recipient
-        val transactionRecipient = intent.getIntExtra(Utils.TRANSACTION_TO_KEY, -1)
+        val transactionRecipient = intent.getIntExtra(Utils.TRANSACTION_TO_KEY, -1).toString()
+        binding.transactionTo.text = transactionRecipient
 
         // Choosing date by clicking on the button
         val currentDate = "${myCalendar.get(Calendar.DATE)}" +

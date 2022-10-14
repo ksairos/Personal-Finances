@@ -11,19 +11,26 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.personalfinances.PersonalFinancesApplication
 import com.example.personalfinances.Utils
 import com.example.personalfinances.data.Category
-import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.FragmentCategoriesBinding
 import kotlinx.coroutines.launch
 
 class CategoriesFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoriesBinding
-    private lateinit var adapter: CategoryAdapter
-    private val catDb by lazy { MainDb.getDb(requireContext()).catDao() }
+    private lateinit var adapter: CategoriesAdapter
+
+    // Initialize our ViewModel
+    private val viewModel: CategoriesViewModel by viewModels {
+        CategoriesViewModelFactory((activity?.application as PersonalFinancesApplication).catRepository)
+    }
+//    private val catDb by lazy { MainDb.getDb(requireContext()).catDao() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +40,7 @@ class CategoriesFragment : Fragment() {
 
         // Set Recycler View
         binding.categoryRecView.layoutManager = GridLayoutManager(requireActivity(), 4)
-        adapter = CategoryAdapter(context)
+        adapter = CategoriesAdapter(context)
         binding.categoryRecView.adapter = adapter
 
         return binding.root
@@ -57,9 +64,8 @@ class CategoriesFragment : Fragment() {
 
                     val newCategory = Category(null, catName, 0.0, catIcon, catColor)
 
-                    lifecycleScope.launch {
-                        catDb.insert(newCategory)
-                    }
+                    viewModel.insertCat(newCategory)
+
                     Toast.makeText(requireActivity(), "A new category is added", Toast.LENGTH_SHORT).show()
                 }
                 AppCompatActivity.RESULT_CANCELED -> {
@@ -76,14 +82,9 @@ This function is used to observe changes in our database. Whenever data is chang
 the curly braces us run. In our case this updates the content in our adapter.
  */
     private fun observeCatDb() {
-        lifecycleScope.launch {
-            catDb.getAll().collect { categoryList ->
-                if (categoryList.isNotEmpty()) {
-                    adapter.submitList(categoryList)
-
-                }
-            }
-        }
+        viewModel.allCats.observe(viewLifecycleOwner, Observer { category ->
+            adapter.submitList(category)
+        })
     }
 
     // This function is used to initialize views and their inner content

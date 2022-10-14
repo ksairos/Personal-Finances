@@ -13,11 +13,9 @@ import com.example.personalfinances.R
 import com.example.personalfinances.Utils
 import com.example.personalfinances.data.Category
 import com.example.personalfinances.databinding.CategoryItemRecviewBinding
-import java.lang.Math.round
-import kotlin.math.roundToInt
 
 // Here we are using ListAdapter instead of usual RecyclerView.Adapter and pass there DiffCallback
-class CategoryAdapter(private val mContext: Context?): ListAdapter<Category, CategoryAdapter.ViewHolder>(DiffCallback()) {
+class CategoriesAdapter(private val mContext: Context?): ListAdapter<Category, CategoriesAdapter.ViewHolder>(DiffCallback()) {
 
     class ViewHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = CategoryItemRecviewBinding.bind(item)

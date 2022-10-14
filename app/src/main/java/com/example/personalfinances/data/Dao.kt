@@ -1,5 +1,6 @@
 package com.example.personalfinances.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -17,23 +18,25 @@ interface CatDao {
     @Query("DELETE FROM category")
     suspend fun nukeCats()
     @Query("SELECT SUM(expanses) as sum_expanses FROM category")
-    suspend fun expansesSum(): Long?
+    fun expansesSum(): Double?
 }
 
 @Dao
 interface AccDao {
     @Insert
     suspend fun insert(account: Account)
-    @Query("SELECT * FROM account")
+    @Query("SELECT * FROM account ORDER BY favorite DESC")
     fun getAll(): Flow<List<Account>>
     @Delete
     suspend fun delete(account: Account)
     @Query("DELETE FROM account")
     suspend fun nukeAccs()
     @Query("SELECT SUM(balance) as sum_balance FROM account")
-    suspend fun sumBalance(): Long?
+    fun sumBalance(): LiveData<Double?>
+    @Query("SELECT name FROM account")
+    suspend fun getAllNames(): List<String?>
     @Query("SELECT id FROM account")
-    fun getAllIds(): List<Int?>
+    suspend fun getAllIds(): List<Int?>
 //    @Query("SELECT * FROM account WHERE favorite=1")
 //    suspend fun selectFavoriteAccount()
 }

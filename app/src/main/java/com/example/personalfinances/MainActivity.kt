@@ -1,21 +1,23 @@
 package com.example.personalfinances
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
 import com.example.personalfinances.accounts.AccountsFragment
 import com.example.personalfinances.categories.CategoriesFragment
-import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
 
-    private val accDb by lazy { MainDb.getDb(this).accDao() }
+    // Initialize our ViewModel
+    private val viewModel : MainActivityViewModel by viewModels {
+        MainActivityViewModelFactory((application as PersonalFinancesApplication).accRepository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,27 +25,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         init()
-        observeCatDb()
+        observeData()
         openFragment(R.id.fragment_container, CategoriesFragment())
     }
-
 
     /*
     This function is used to observe changes in our database. Whenever data is changed, the code in
     the curly braces us run. In our case this updates the content in our adapter.
      */
     // TODO: Add dependency injection (Dagger) to avoid database initialization everytime
-    private fun observeCatDb() {
-        lifecycleScope.launch {
-            accDb.getAll().collect {
-                // Set top bar data
-                val balance = accDb.sumBalance()
-                if (balance != null) binding.toolBar.title = "$${balance}"
-                else binding.toolBar.title = "$0"
+    private fun observeData() {
+        viewModel.sumBalance.observe(this, Observer{ balance ->
+            binding.toolBar.title = "$${balance}"
+        })
 
-            }
         }
-    }
 
     // This function is used to initialize views and their inner content
     private fun init() {
