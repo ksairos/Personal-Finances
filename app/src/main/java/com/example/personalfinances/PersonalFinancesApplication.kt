@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.data.repository.AccountRepository
 import com.example.personalfinances.data.repository.CategoriesRepository
+import com.example.personalfinances.data.repository.TransactionsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -16,4 +17,5 @@ class PersonalFinancesApplication: Application() {
     val database by lazy { MainDb.getDb(this, applicationScope)}
     val accRepository by lazy { AccountRepository(database.accDao()) }
     val catRepository by lazy { CategoriesRepository(database.catDao()) }
+    val transactionsRepository by lazy { TransactionsRepository(database.transactionsDao()) }
 }

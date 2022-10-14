@@ -21,21 +21,18 @@ class MakeTransactionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMakeTransactionBinding
     // Calendar for a date picker
     private val myCalendar = Calendar.getInstance()
-    // Get an instance of our database
-//    private val mainDb by lazy { MainDb.getDb(this, )}
-
-    private lateinit var nameIdMap: Map<String?, Int?>
-
+    // Initialize our database
+    private val viewModel: MakeTransactionViewModel by viewModels {
+        MakeTransactionViewModelFactory((application as PersonalFinancesApplication).transactionsRepository,
+            (application as PersonalFinancesApplication).accRepository,
+            (application as PersonalFinancesApplication).catRepository)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMakeTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Initialize the ViewModel for our Activity
-
-//        val viewModelFactory = MakeTransactionActivityViewModel.
 
         // Listener for a Cancel button
         binding.topAppBar.setNavigationOnClickListener {
@@ -46,13 +43,13 @@ class MakeTransactionActivity : AppCompatActivity() {
         // TODO: Listener for Confirmation button
         binding.topAppBar.setOnMenuItemClickListener { true }
 
-        lifecycleScope.launch{
-
-            ArrayAdapter(this@MakeTransactionActivity, android.R.layout.simple_spinner_item, nameIdMap.keys.toList())
-                .also { adapter ->
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    binding.accountsSpinner.adapter = adapter}
-        }
+            viewModel.allAccountsNames.observe(this) { accounts ->
+                ArrayAdapter(this@MakeTransactionActivity, android.R.layout.simple_spinner_item, accounts)
+                    .also { adapter ->
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        binding.accountsSpinner.adapter = adapter
+                    }
+            }
 
         binding.accountsSpinner
         // Set the name of the recipient

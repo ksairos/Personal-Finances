@@ -11,12 +11,16 @@ import kotlinx.coroutines.flow.Flow
 interface CatDao {
     @Insert
     suspend fun insert(category: Category)
+
     @Query("SELECT * FROM category")
     fun getAll(): Flow<List<Category>>
+
     @Delete
     suspend fun delete(category: Category)
+
     @Query("DELETE FROM category")
     suspend fun nukeCats()
+
     @Query("SELECT SUM(expanses) as sum_expanses FROM category")
     fun expansesSum(): Double?
 }
@@ -25,18 +29,28 @@ interface CatDao {
 interface AccDao {
     @Insert
     suspend fun insert(account: Account)
+
     @Query("SELECT * FROM account ORDER BY favorite DESC")
     fun getAll(): Flow<List<Account>>
+
     @Delete
     suspend fun delete(account: Account)
+
     @Query("DELETE FROM account")
     suspend fun nukeAccs()
+
     @Query("SELECT SUM(balance) as sum_balance FROM account")
     fun sumBalance(): LiveData<Double?>
+
+    @Query("SELECT * FROM account WHERE name=:name ")
+    fun selectAccountbyName(name: String): Flow<Account>
+
     @Query("SELECT name FROM account")
-    suspend fun getAllNames(): List<String?>
+    fun getAllNames(): LiveData<List<String?>>
+
     @Query("SELECT id FROM account")
-    suspend fun getAllIds(): List<Int?>
+    fun getAllIds(): LiveData<List<Int?>>
+
 //    @Query("SELECT * FROM account WHERE favorite=1")
 //    suspend fun selectFavoriteAccount()
 }
@@ -45,8 +59,10 @@ interface AccDao {
 interface TransactionDao {
     @Insert
     suspend fun insert(transaction: Transaction)
+
     @Query("SELECT * FROM transactions")
-    suspend fun getAll(): Flow<List<Transaction>>
+    fun getAll(): Flow<List<Transaction>>
+
     @Delete
     suspend fun delete(transaction: Transaction)
 }

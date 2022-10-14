@@ -10,7 +10,7 @@ import com.example.personalfinances.Utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database (entities = [Category::class, Account::class],
+@Database (entities = [Category::class, Account::class, Transaction::class],
     exportSchema = false,
     version = 1
 )
@@ -20,6 +20,7 @@ abstract class MainDb : RoomDatabase() {
 
     abstract fun catDao(): CatDao
     abstract fun accDao(): AccDao
+    abstract fun transactionsDao(): TransactionDao
 
     //
     private class MainCallback(
@@ -55,7 +56,7 @@ abstract class MainDb : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MainDb::class.java,
-                    "word_database"
+                    "my_database"
                 ).addCallback(MainCallback(scope))
                     .build()
                 INSTANCE = instance

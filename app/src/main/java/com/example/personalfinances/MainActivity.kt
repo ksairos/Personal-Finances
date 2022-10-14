@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
     // TODO: Add dependency injection (Dagger) to avoid database initialization everytime
     private fun observeData() {
         viewModel.sumBalance.observe(this, Observer{ balance ->
-            binding.toolBar.title = "$${balance}"
+            if (balance == null) binding.toolBar.title = "$0"
+            else binding.toolBar.title = "$${balance}"
         })
 
         }
