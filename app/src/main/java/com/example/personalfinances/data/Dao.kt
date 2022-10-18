@@ -42,8 +42,8 @@ interface AccDao {
     @Query("SELECT SUM(balance) as sum_balance FROM account")
     fun sumBalance(): LiveData<Double?>
 
-    @Query("SELECT * FROM account WHERE name=:name ")
-    fun selectAccountbyName(name: String): Flow<Account>
+    @Query("SELECT id FROM account WHERE name=:name")
+    suspend fun getAccIdByName(name: String?): Int?
 
     @Query("SELECT name FROM account")
     fun getAllNames(): LiveData<List<String?>>

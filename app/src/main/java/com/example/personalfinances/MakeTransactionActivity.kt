@@ -7,25 +7,27 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.ActivityMakeTransactionBinding
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MakeTransactionActivity : AppCompatActivity() {
 
+    private var transactionRecipientId: Int? = null
+    private var transactionRecipientName: String? = null
+
     private lateinit var binding: ActivityMakeTransactionBinding
+
     // Calendar for a date picker
     private val myCalendar = Calendar.getInstance()
+
     // Initialize our database
     private val viewModel: MakeTransactionViewModel by viewModels {
-        MakeTransactionViewModelFactory((application as PersonalFinancesApplication).transactionsRepository,
+        MakeTransactionViewModelFactory(
+            (application as PersonalFinancesApplication).transactionsRepository,
             (application as PersonalFinancesApplication).accRepository,
-            (application as PersonalFinancesApplication).catRepository)
+            (application as PersonalFinancesApplication).catRepository
+        )
     }
 
 
@@ -34,41 +36,59 @@ class MakeTransactionActivity : AppCompatActivity() {
         binding = ActivityMakeTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Initialize the data from the intent
+        transactionRecipientId = intent.getIntExtra(Utils.TRANSACTION_ID_TO_KEY, -1)
+        transactionRecipientName = intent.getStringExtra(Utils.TRANSACTION_NAME_TO_KEY)
+
+        // Set the name of the recipient
+        binding.transactionTo.text = transactionRecipientName
+
         // Listener for a Cancel button
         binding.topAppBar.setNavigationOnClickListener {
             // TODO: Add alert dialog for canceling transaction
             finish()
         }
 
-        // TODO: Listener for Confirmation button
-        binding.topAppBar.setOnMenuItemClickListener { true }
-
-            viewModel.allAccountsNames.observe(this) { accounts ->
-                ArrayAdapter(this@MakeTransactionActivity, android.R.layout.simple_spinner_item, accounts)
-                    .also { adapter ->
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        binding.accountsSpinner.adapter = adapter
-                    }
-            }
-
-        binding.accountsSpinner
-        // Set the name of the recipient
-        val transactionRecipient = intent.getIntExtra(Utils.TRANSACTION_TO_KEY, -1).toString()
-        binding.transactionTo.text = transactionRecipient
+        // Use viewModel to fill categories for our Spinner
+        viewModel.allAccountsNames.observe(this) { accounts ->
+            ArrayAdapter(
+                this@MakeTransactionActivity,
+                android.R.layout.simple_spinner_item,
+                accounts
+            )
+                .also { adapter ->
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.accountsSpinner.adapter = adapter
+                }
+        }
 
         // Choosing date by clicking on the button
         val currentDate = "${myCalendar.get(Calendar.DATE)}" +
-                "/${(myCalendar.get(Calendar.MONTH)+1)}" +
+                "/${(myCalendar.get(Calendar.MONTH) + 1)}" +
                 "/${myCalendar.get(Calendar.YEAR)}"
         binding.createTransactionDateEditText.setText(currentDate)
-
         binding.createTransactionDateEditText.transformIntoDatePicker(this, "dd/mm/yyyy")
 
+
+        // TODO: Listener for Confirmation button
+        binding.topAppBar.setOnMenuItemClickListener {
+            viewModel.createTransactionToCategory(
+                binding.accountsSpinner.selectedItem.toString(),
+                transactionRecipientId,
+                binding.createTransactionAmountEditText.text.toString().toDouble(),
+                binding.createTransactionDateEditText.text?.toString()
+            )
+            true
+        }
     }
 
 
     // StackOverFlow's function for DatePicker
-    private fun EditText.transformIntoDatePicker(context: Context, format: String, maxDate: Date? = null) {
+    private fun EditText.transformIntoDatePicker(
+        context: Context,
+        format: String,
+        maxDate: Date? = null
+    ) {
         isFocusableInTouchMode = false
         isClickable = true
         isFocusable = false

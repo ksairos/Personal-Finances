@@ -22,4 +22,8 @@ class AccountRepository(private val accDao: AccDao) {
     suspend fun delete(account: Account){
         accDao.delete(account)
     }
+
+    suspend fun getAccIdByName(name: String?): Int?{
+        return accDao.getAccIdByName(name)
+    }
 }
