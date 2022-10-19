@@ -18,4 +18,9 @@ class TransactionsRepository(private val transactionDao: TransactionDao) {
     suspend fun delete(transaction: Transaction){
         transactionDao.delete(transaction)
     }
+
+    @WorkerThread
+    suspend fun update(transaction: Transaction){
+        transactionDao.update(transaction)
+    }
 }

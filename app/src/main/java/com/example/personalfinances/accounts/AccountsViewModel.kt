@@ -12,7 +12,7 @@ class AccountsViewModel(private val repository: AccountRepository): ViewModel(){
 
     // An insert function for inserting the data in our repository. This is done to separate data and UI
     fun insertAcc(account: Account) = viewModelScope.launch {
-        repository.insert(account)
+        repository.insertAcc(account)
     }
 
     // Get the sum of the balance of all accounts in our database

@@ -20,6 +20,11 @@ class CategoriesRepository(private val catDao: CatDao) {
         catDao.delete(category)
     }
 
+    @WorkerThread
+    suspend fun update(category: Category){
+        catDao.update(category)
+    }
+
 
 
 }

@@ -1,16 +1,17 @@
 package com.example.personalfinances.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.lifecycle.MutableLiveData
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CatDao {
     @Insert
     suspend fun insert(category: Category)
+
+    @Update
+    suspend fun update(category: Category)
 
     @Query("SELECT * FROM category")
     fun getAll(): Flow<List<Category>>
@@ -23,18 +24,24 @@ interface CatDao {
 
     @Query("SELECT SUM(expanses) as sum_expanses FROM category")
     fun expansesSum(): Double?
+
+//    @Query("SELECT * FROM category WHERE id=:id")
+//    fun
 }
 
 @Dao
 interface AccDao {
     @Insert
-    suspend fun insert(account: Account)
+    suspend fun insertAcc(account: Account)
 
     @Query("SELECT * FROM account ORDER BY favorite DESC")
     fun getAll(): Flow<List<Account>>
 
     @Delete
-    suspend fun delete(account: Account)
+    suspend fun deleteAcc(account: Account)
+
+    @Update
+    suspend fun updateAcc(account: Account)
 
     @Query("DELETE FROM account")
     suspend fun nukeAccs()
@@ -43,7 +50,10 @@ interface AccDao {
     fun sumBalance(): LiveData<Double?>
 
     @Query("SELECT id FROM account WHERE name=:name")
-    suspend fun getAccIdByName(name: String?): Int?
+    suspend fun getAccIdByName(name: String?): Int
+
+    @Query("SELECT * FROM account WHERE name=:name")
+    suspend fun getAccByName(name: String?): Account
 
     @Query("SELECT name FROM account")
     fun getAllNames(): LiveData<List<String?>>
@@ -65,4 +75,7 @@ interface TransactionDao {
 
     @Delete
     suspend fun delete(transaction: Transaction)
+
+    @Update
+    suspend fun update(transaction: Transaction)
 }

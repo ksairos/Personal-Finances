@@ -14,16 +14,25 @@ class AccountRepository(private val accDao: AccDao) {
     val sumBalance: LiveData<Double?> = accDao.sumBalance()
 
     @WorkerThread
-    suspend fun insert(account: Account){
-        accDao.insert(account)
+    suspend fun insertAcc(account: Account){
+        accDao.insertAcc(account)
     }
 
     @WorkerThread
-    suspend fun delete(account: Account){
-        accDao.delete(account)
+    suspend fun deleteAcc(account: Account){
+        accDao.deleteAcc(account)
     }
 
-    suspend fun getAccIdByName(name: String?): Int?{
+    @WorkerThread
+    suspend fun updateAcc(account: Account){
+        accDao.updateAcc(account)
+    }
+
+    suspend fun getAccIdByName(name: String?): Int{
         return accDao.getAccIdByName(name)
+    }
+
+    suspend fun getAccByName(name: String?): Account {
+        return accDao.getAccByName(name)
     }
 }

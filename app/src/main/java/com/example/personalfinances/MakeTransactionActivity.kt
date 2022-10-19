@@ -14,7 +14,6 @@ import java.util.*
 class MakeTransactionActivity : AppCompatActivity() {
 
     private var transactionRecipientId: Int? = null
-    private var transactionRecipientName: String? = null
 
     private lateinit var binding: ActivityMakeTransactionBinding
 
@@ -38,10 +37,10 @@ class MakeTransactionActivity : AppCompatActivity() {
 
         // Initialize the data from the intent
         transactionRecipientId = intent.getIntExtra(Utils.TRANSACTION_ID_TO_KEY, -1)
-        transactionRecipientName = intent.getStringExtra(Utils.TRANSACTION_NAME_TO_KEY)
 
-        // Set the name of the recipient
-        binding.transactionTo.text = transactionRecipientName
+
+        // TODO: Set the name of the recipient
+//        binding.transactionTo.text = transactionRecipientName
 
         // Listener for a Cancel button
         binding.topAppBar.setNavigationOnClickListener {

@@ -2,6 +2,7 @@ package com.example.personalfinances
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.personalfinances.data.Account
 import com.example.personalfinances.data.Category
 import com.example.personalfinances.data.Transaction
 import com.example.personalfinances.data.repository.AccountRepository
@@ -26,24 +27,31 @@ class MakeTransactionViewModel(
 
     private var temp: Unit? = null
 
-
-    fun insertTransaction(transaction: Transaction) = viewModelScope.launch {
-        repository.insert(transaction)
-    }
-
     // This function creates a transaction between account and a category (or another account)
-    fun createTransactionToCategory(fromName: String?, toId: Int?, amount: Double?, date: String?) {
-        val fromId = getAccIdByName(fromName)
+    fun createTransactionToCategory(fromName: String?, toId: Int?, amount: Double, date: String?) {
 
-        // Create and insert Transaction
-        val newTransaction: Transaction = Transaction(null, fromId, toId, amount, date)
+        val account: Account? = getAccByName(fromName)
+        val temp = getAccIdByName(fromName)
+
+        Log.d(TAG, "\nTHIS IS MY ACCOUNT: $account" +
+                "\nAND THIS IS MY TEMP FILE: $temp")
+
+        val newBalance = account?.balance?.minus(amount)
+
         Log.d(
             TAG,
-            "createTransactionToCategory: CREATED TRANSACTIONS: \nID: $fromId, \nTO ID: $toId, \nAMOUNT: $amount, \nDate:$date"
+            "createTransactionToCategory: CREATED TRANSACTIONS: \nID: $temp, \nTO ID: $toId, \nAMOUNT: $amount, \nDate:$date"
         )
-        // Subtract money from Account
 
-        // Add money to the recipient Category Expenses
+        // Create and insert Transaction
+        val newTransaction = Transaction(null, temp, toId, amount, date)
+        insertTransaction(newTransaction)
+
+        // Update Account by subtracting money from the balance
+//        val updatedAccount = Account(fromId, fromName, )
+
+        // Update Category by adding money to the Expenses section
+
     }
 
     fun createTransactionToAccount() {
@@ -54,10 +62,30 @@ class MakeTransactionViewModel(
         // Add money to the recipient Account Balance
     }
 
+    // Function to insert Transaction in our database
+    private fun insertTransaction(transaction: Transaction) = viewModelScope.launch {
+        repository.insert(transaction)
+    }
+
+    // Function to Update Account balance
+    private fun updateAcc(account: Account) = viewModelScope.launch{
+        acc_repository.updateAcc(account)
+    }
+
+    // Function to Update Category balance
+
+    // Get Account ID using Name
     private fun getAccIdByName(name: String?): Int?{
         val result = MutableLiveData<Int?>()
         viewModelScope.launch { result.postValue(acc_repository.getAccIdByName(name).toString().toInt()) }
         return result.value
+    }
+
+    // Get Account ID using Name
+    private fun getAccByName(name: String?): Account?{
+        var result: Account? = null
+        viewModelScope.launch { result = (acc_repository.getAccByName(name)) }
+        return result
     }
 }
 
