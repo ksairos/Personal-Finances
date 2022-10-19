@@ -52,7 +52,7 @@ interface AccDao {
     @Query("SELECT id FROM account WHERE name=:name")
     suspend fun getAccIdByName(name: String?): Int
 
-    @Query("SELECT * FROM account WHERE name=:name")
+    @Query("SELECT * FROM account WHERE name=:name LIMIT 1")
     suspend fun getAccByName(name: String?): Account
 
     @Query("SELECT name FROM account")

@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.personalfinances.data.Account
 import com.example.personalfinances.databinding.ActivityMakeTransactionBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -14,6 +15,8 @@ import java.util.*
 class MakeTransactionActivity : AppCompatActivity() {
 
     private var transactionRecipientId: Int? = null
+
+//    private lateinit var account: Account
 
     private lateinit var binding: ActivityMakeTransactionBinding
 
@@ -71,12 +74,19 @@ class MakeTransactionActivity : AppCompatActivity() {
 
         // TODO: Listener for Confirmation button
         binding.topAppBar.setOnMenuItemClickListener {
-            viewModel.createTransactionToCategory(
-                binding.accountsSpinner.selectedItem.toString(),
-                transactionRecipientId,
-                binding.createTransactionAmountEditText.text.toString().toDouble(),
-                binding.createTransactionDateEditText.text?.toString()
-            )
+
+            // Use LiveData to find the chosen Account we want to use by its name
+            viewModel.getAccByName(binding.accountsSpinner.selectedItem.toString())
+                .observe(this) { account_ ->
+                    // Pass chosen account into our viewModel
+                    viewModel.createTransactionToCategory(
+                        account_,
+                        transactionRecipientId,
+                        binding.createTransactionAmountEditText.text.toString().toDouble(),
+                        binding.createTransactionDateEditText.text?.toString()
+                    )
+                }
+            finish()
             true
         }
     }

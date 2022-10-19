@@ -1,6 +1,5 @@
 package com.example.personalfinances
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.personalfinances.data.Account
 import com.example.personalfinances.data.Category
@@ -25,35 +24,24 @@ class MakeTransactionViewModel(
 
     val allCategories: LiveData<List<Category>> = cat_repository.allCategories.asLiveData()
 
-    private var temp: Unit? = null
 
-    // This function creates a transaction between account and a category (or another account)
-    fun createTransactionToCategory(fromName: String?, toId: Int?, amount: Double, date: String?) {
-
-        val account: Account? = getAccByName(fromName)
-        val temp = getAccIdByName(fromName)
-
-        Log.d(TAG, "\nTHIS IS MY ACCOUNT: $account" +
-                "\nAND THIS IS MY TEMP FILE: $temp")
-
-        val newBalance = account?.balance?.minus(amount)
-
-        Log.d(
-            TAG,
-            "createTransactionToCategory: CREATED TRANSACTIONS: \nID: $temp, \nTO ID: $toId, \nAMOUNT: $amount, \nDate:$date"
-        )
+    // This function creates a transaction between account and a category
+    fun createTransactionToCategory(fromAcc: Account, toId: Int?, amount: Double, date: String?) {
 
         // Create and insert Transaction
-        val newTransaction = Transaction(null, temp, toId, amount, date)
+        val newTransaction = Transaction(null, fromAcc.id, toId, amount, date)
         insertTransaction(newTransaction)
 
         // Update Account by subtracting money from the balance
-//        val updatedAccount = Account(fromId, fromName, )
+        val newBalance = fromAcc.balance?.minus(amount)
+        val updatedAccount = Account(fromAcc.id, fromAcc.name, newBalance, fromAcc.favorite, fromAcc.icon, fromAcc.color)
+        updateAcc(updatedAccount)
 
         // Update Category by adding money to the Expenses section
 
     }
 
+    // This function creates a transaction between two accounts
     fun createTransactionToAccount() {
         // Create and insert Transaction
 
@@ -62,33 +50,29 @@ class MakeTransactionViewModel(
         // Add money to the recipient Account Balance
     }
 
+
     // Function to insert Transaction in our database
     private fun insertTransaction(transaction: Transaction) = viewModelScope.launch {
         repository.insert(transaction)
     }
 
     // Function to Update Account balance
-    private fun updateAcc(account: Account) = viewModelScope.launch{
+    private fun updateAcc(account: Account) = viewModelScope.launch {
         acc_repository.updateAcc(account)
     }
 
-    // Function to Update Category balance
+    // Function to Update Category expenses
 
-    // Get Account ID using Name
-    private fun getAccIdByName(name: String?): Int?{
-        val result = MutableLiveData<Int?>()
-        viewModelScope.launch { result.postValue(acc_repository.getAccIdByName(name).toString().toInt()) }
-        return result.value
-    }
-
-    // Get Account ID using Name
-    private fun getAccByName(name: String?): Account?{
-        var result: Account? = null
-        viewModelScope.launch { result = (acc_repository.getAccByName(name)) }
+    // Get Account using its Name
+    fun getAccByName(name: String?): MutableLiveData<Account> {
+        val result = MutableLiveData<Account>()
+        viewModelScope.launch { result.postValue(acc_repository.getAccByName(name)) }
         return result
     }
 }
 
+
+// The model factory for our viewModel
 class MakeTransactionViewModelFactory(
     private val repository: TransactionsRepository,
     private val acc_repository: AccountRepository,
