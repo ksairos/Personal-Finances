@@ -8,22 +8,25 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CatDao {
     @Insert
-    suspend fun insert(category: Category)
+    suspend fun insertCat(category: Category)
 
     @Update
-    suspend fun update(category: Category)
+    suspend fun updateCat(category: Category)
 
     @Query("SELECT * FROM category")
     fun getAll(): Flow<List<Category>>
 
     @Delete
-    suspend fun delete(category: Category)
+    suspend fun deleteCat(category: Category)
 
     @Query("DELETE FROM category")
     suspend fun nukeCats()
 
     @Query("SELECT SUM(expanses) as sum_expanses FROM category")
     fun expansesSum(): Double?
+
+    @Query("SELECT * FROM category WHERE id=:id LIMIT 1")
+    suspend fun getCatById(id: Int?): Category
 
 //    @Query("SELECT * FROM category WHERE id=:id")
 //    fun
@@ -48,9 +51,6 @@ interface AccDao {
 
     @Query("SELECT SUM(balance) as sum_balance FROM account")
     fun sumBalance(): LiveData<Double?>
-
-    @Query("SELECT id FROM account WHERE name=:name")
-    suspend fun getAccIdByName(name: String?): Int
 
     @Query("SELECT * FROM account WHERE name=:name LIMIT 1")
     suspend fun getAccByName(name: String?): Account

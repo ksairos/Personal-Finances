@@ -11,19 +11,25 @@ class CategoriesRepository(private val catDao: CatDao) {
 //    val expansesSum = catDao.expansesSum()
 
     @WorkerThread
-    suspend fun insert(category: Category){
-        catDao.insert(category)
+    suspend fun insertCat(category: Category){
+        catDao.insertCat(category)
     }
 
     @WorkerThread
-    suspend fun delete(category: Category){
-        catDao.delete(category)
+    suspend fun deleteCat(category: Category){
+        catDao.deleteCat(category)
     }
 
     @WorkerThread
-    suspend fun update(category: Category){
-        catDao.update(category)
+    suspend fun updateCat(category: Category){
+        catDao.updateCat(category)
     }
+
+    @WorkerThread
+    suspend fun getCatById(id: Int?): Category {
+        return catDao.getCatById(id)
+    }
+
 
 
 

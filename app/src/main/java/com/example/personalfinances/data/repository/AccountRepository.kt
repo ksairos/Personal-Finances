@@ -28,10 +28,7 @@ class AccountRepository(private val accDao: AccDao) {
         accDao.updateAcc(account)
     }
 
-    suspend fun getAccIdByName(name: String?): Int{
-        return accDao.getAccIdByName(name)
-    }
-
+    @WorkerThread
     suspend fun getAccByName(name: String?): Account {
         return accDao.getAccByName(name)
     }

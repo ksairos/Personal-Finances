@@ -12,12 +12,12 @@ class CategoriesViewModel(private val repository: CategoriesRepository): ViewMod
 
     // An insert function for inserting the data in our repository. This is done to separate data and UI
     fun insertCat(category: Category) = viewModelScope.launch {
-        repository.insert(category)
+        repository.insertCat(category)
     }
 
     // A delete function for the data in our repository
     fun deleteCat(category: Category) = viewModelScope.launch {
-        repository.delete(category)
+        repository.deleteCat(category)
     }
 }
 

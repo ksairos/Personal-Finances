@@ -26,19 +26,11 @@ class MakeTransactionViewModel(
 
 
     // This function creates a transaction between account and a category
-    fun createTransactionToCategory(fromAcc: Account, toId: Int?, amount: Double, date: String?) {
+    fun createTransaction(fromAcc: Account, toId: Int?, amount: Double, date: String?) {
 
-        // Create and insert Transaction
+        // Create and insert Transaction in our database
         val newTransaction = Transaction(null, fromAcc.id, toId, amount, date)
-        insertTransaction(newTransaction)
-
-        // Update Account by subtracting money from the balance
-        val newBalance = fromAcc.balance?.minus(amount)
-        val updatedAccount = Account(fromAcc.id, fromAcc.name, newBalance, fromAcc.favorite, fromAcc.icon, fromAcc.color)
-        updateAcc(updatedAccount)
-
-        // Update Category by adding money to the Expenses section
-
+        viewModelScope.launch { repository.insert(newTransaction) }
     }
 
     // This function creates a transaction between two accounts
@@ -51,22 +43,42 @@ class MakeTransactionViewModel(
     }
 
 
-    // Function to insert Transaction in our database
-    private fun insertTransaction(transaction: Transaction) = viewModelScope.launch {
-        repository.insert(transaction)
-    }
-
     // Function to Update Account balance
-    private fun updateAcc(account: Account) = viewModelScope.launch {
-        acc_repository.updateAcc(account)
+    fun updateAcc(account: Account, amount: Double, recipient: Boolean = false) {
+
+        // If the chosen Account is a recipient, add money to the Balance. Otherwise subtract
+        if (recipient){
+            val newBalance = account.balance?.plus(amount)
+            val updatedAccount = Account(account.id, account.name, newBalance, account.favorite, account.icon, account.color)
+            viewModelScope.launch { acc_repository.updateAcc(updatedAccount) }
+        }else{
+            // Update Account by subtracting money from the balance
+            val newBalance = account.balance?.minus(amount)
+            val updatedAccount = Account(account.id, account.name, newBalance, account.favorite, account.icon, account.color)
+            viewModelScope.launch { acc_repository.updateAcc(updatedAccount) }
+        }
+
     }
 
     // Function to Update Category expenses
+    fun updateCat(category: Category, amount: Double){
+        val newExpanses = category.expanses?.plus(amount)
+        val updatedCategory = Category(category.id, category.name, newExpanses, category.icon, category.color)
+        viewModelScope.launch { cat_repository.updateCat(updatedCategory) }
+    }
+
 
     // Get Account using its Name
     fun getAccByName(name: String?): MutableLiveData<Account> {
         val result = MutableLiveData<Account>()
         viewModelScope.launch { result.postValue(acc_repository.getAccByName(name)) }
+        return result
+    }
+
+    // Get Category using its ID
+    fun getCatById(id: Int?): MutableLiveData<Category> {
+        val result = MutableLiveData<Category>()
+        viewModelScope.launch { result.postValue(cat_repository.getCatById(id)) }
         return result
     }
 }
