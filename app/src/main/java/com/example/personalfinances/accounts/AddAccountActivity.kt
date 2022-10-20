@@ -1,5 +1,6 @@
 package com.example.personalfinances.accounts
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,8 +27,7 @@ class AddAccountActivity : AppCompatActivity() {
 
         // Listener for Cancel button
         binding.addAccTopAppBar.setNavigationOnClickListener {
-            setResult(RESULT_CANCELED, intent)
-            finish()
+            showExitAlertDialog()
         }
 
         // Listener for Confirmation button
@@ -68,6 +68,18 @@ class AddAccountActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+
+    private fun showExitAlertDialog(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Discard changes and exit?")
+        builder.setMessage("This action cannot be undone.")
+        builder.setNegativeButton("Keep editing") {dialog, i -> }
+        builder.setPositiveButton("Yes") {dialog, i ->
+            setResult(RESULT_CANCELED, intent)
+            finish()}
+        builder.show()
     }
 
     // From using empty Account name and the name with more than 20 symbols

@@ -1,5 +1,6 @@
 package com.example.personalfinances.categories
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,9 +24,7 @@ class AddCategoryActivity : AppCompatActivity() {
 
         // Listener for Cancel button
         binding.topAppBar.setNavigationOnClickListener {
-            // TODO: Add alert dialog for canceling transaction
-            setResult(RESULT_CANCELED, intent)
-            finish()
+            showExitAlertDialog()
         }
 
         // Listener for Confirmation button
@@ -73,5 +72,16 @@ class AddCategoryActivity : AppCompatActivity() {
             return "Required field"
         }
         return null
+    }
+
+    private fun showExitAlertDialog(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Discard changes and exit?")
+        builder.setMessage("This action cannot be undone.")
+        builder.setNegativeButton("Keep editing") {dialog, i -> }
+        builder.setPositiveButton("Yes") {dialog, i ->
+            setResult(RESULT_CANCELED, intent)
+            finish()}
+        builder.show()
     }
 }

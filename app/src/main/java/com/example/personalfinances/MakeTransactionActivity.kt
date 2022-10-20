@@ -1,7 +1,9 @@
 package com.example.personalfinances
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -14,8 +16,6 @@ import java.util.*
 class MakeTransactionActivity : AppCompatActivity() {
 
     private var transactionRecipientId: Int? = null
-
-//    private lateinit var account: Account
 
     private lateinit var binding: ActivityMakeTransactionBinding
 
@@ -40,14 +40,15 @@ class MakeTransactionActivity : AppCompatActivity() {
         // Initialize the data from the intent
         transactionRecipientId = intent.getIntExtra(Utils.TRANSACTION_ID_TO_KEY, -1)
 
-
-        // TODO: Set the name of the recipient
-//        binding.transactionTo.text = transactionRecipientName
+        // Set the name of recipient in the text field
+        viewModel.getCatById(transactionRecipientId)
+            .observe(this) { category ->
+                binding.transactionTo.text = category.name
+            }
 
         // Listener for a Cancel button
         binding.topAppBar.setNavigationOnClickListener {
-            // TODO: Add alert dialog for canceling transaction
-            finish()
+            showExitAlertDialog()
         }
 
         // Use viewModel to fill categories for our Spinner
@@ -71,7 +72,6 @@ class MakeTransactionActivity : AppCompatActivity() {
         binding.createTransactionDateEditText.transformIntoDatePicker(this, "dd/mm/yyyy")
 
 
-        // TODO: Listener for Confirmation button
         binding.topAppBar.setOnMenuItemClickListener {
 
             val amount = binding.createTransactionAmountEditText.text.toString().toDouble()
@@ -102,6 +102,17 @@ class MakeTransactionActivity : AppCompatActivity() {
         }
     }
 
+
+
+    private fun showExitAlertDialog(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Discard changes and exit?")
+        builder.setMessage("This action cannot be undone.")
+        builder.setNegativeButton("Keep editing") {dialog, i -> }
+        builder.setPositiveButton("Yes") {dialog, i ->
+            finish()}
+        builder.show()
+    }
 
     // StackOverFlow's function for DatePicker
     private fun EditText.transformIntoDatePicker(
