@@ -25,6 +25,7 @@ class AccountsFragment : Fragment() {
 
     private lateinit var adapter: AccountsAdapter
     private lateinit var binding: FragmentAccountsBinding
+    private lateinit var newAccount: Account
 
     // Initialize ViewModel using PersonalFinancesApplication repository
     private val viewModel : AccountsViewModel by viewModels {
@@ -62,9 +63,16 @@ class AccountsFragment : Fragment() {
                     val accIcon = result.data?.getIntExtra(Utils.ACC_ICON_KEY, 0)
                     val accBalance = result.data?.getDoubleExtra(Utils.ACC_BALANCE_KEY, 0.toDouble())
 
-                    val newAccount = Account(null, accName, accBalance, false, accIcon, accColor)
-
+                    // The first added account becomes favorite
+                    viewModel.allAccounts.observe(this){ accounts ->
+                        newAccount = if (accounts.isEmpty()){
+                            Account(null, accName, accBalance, true, accIcon, accColor)
+                        }else{
+                            Account(null, accName, accBalance, false, accIcon, accColor)
+                        }
+                    }
                     viewModel.insertAcc(newAccount)
+
                     Toast.makeText(requireActivity(), "A new account is added", Toast.LENGTH_SHORT).show()
                 }
                 AppCompatActivity.RESULT_CANCELED -> {
@@ -81,9 +89,9 @@ This function is used to observe changes in our database. Whenever data is chang
 the curly braces us run. In our case this updates the content in our adapter.
 */
     private fun observeData() {
-        viewModel.allAccounts.observe(viewLifecycleOwner, Observer { accounts ->
+        viewModel.allAccounts.observe(viewLifecycleOwner) { accounts ->
             adapter.submitList(accounts)
-        })
+        }
     }
 
     // This function is used to initialize views and their inner content

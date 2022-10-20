@@ -37,8 +37,6 @@ class AddAccountActivity : AppCompatActivity() {
                 // Collect data from Inputs
                 val accName = binding.addAccName.text.toString()
                 val accBalance = Utils.roundDouble(binding.addAccBalance.text.toString().toDouble())
-                Log.d(TAG, "onCreate: My balance is $accBalance")
-
                 // Account name validation
                 if (validateAccName(accName) == null){
 

@@ -55,7 +55,7 @@ interface AccDao {
     @Query("SELECT * FROM account WHERE name=:name LIMIT 1")
     suspend fun getAccByName(name: String?): Account
 
-    @Query("SELECT name FROM account")
+    @Query("SELECT name FROM account ORDER BY favorite DESC")
     fun getAllNames(): LiveData<List<String?>>
 
     @Query("SELECT id FROM account")
