@@ -79,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            app:helperTextTextColor="@color/m3_ref_error_error40"
             android:hint="@string/transaction_amount"
             app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"

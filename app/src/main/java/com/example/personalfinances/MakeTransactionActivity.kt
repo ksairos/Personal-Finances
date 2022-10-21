@@ -3,7 +3,6 @@ package com.example.personalfinances
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -74,44 +73,60 @@ class MakeTransactionActivity : AppCompatActivity() {
 
         binding.topAppBar.setOnMenuItemClickListener {
 
-            val amount = binding.createTransactionAmountEditText.text.toString().toDouble()
+            val amountTxt = binding.createTransactionAmountEditText.text.toString()
 
-            // Use LiveData to find the chosen Account we want to use by its name
-            viewModel.getAccByName(binding.accountsSpinner.selectedItem.toString())
-                .observe(this) { account_ ->
-                    // Pass chosen account into our viewModel to create a transaction
-                    viewModel.createTransaction(
-                        account_,
-                        transactionRecipientId,
-                        amount,
-                        binding.createTransactionDateEditText.text?.toString()
-                    )
+            if (validateTransactionAmount(amountTxt) != null){
+                binding.createTransactionAmountLayout.helperText = validateTransactionAmount(amountTxt)
+                false
+            }else{
+                val amount = amountTxt.toDouble()
+                // Use LiveData to find the chosen Account we want to use by its name
+                viewModel.getAccByName(binding.accountsSpinner.selectedItem.toString())
+                    .observe(this) { account_ ->
+                        // Pass chosen account into our viewModel to create a transaction
+                        viewModel.createTransaction(
+                            account_,
+                            transactionRecipientId,
+                            amount,
+                            binding.createTransactionDateEditText.text?.toString()
+                        )
 
-                    // Here we update the data in our account
-                    viewModel.updateAcc(account_, amount)
-                }
+                        // Here we update the data in our account
+                        viewModel.updateAcc(account_, amount)
+                    }
 
-            // And update the data in the chosen category
-            viewModel.getCatById(transactionRecipientId)
-                .observe(this) { category ->
-                    viewModel.updateCat(category, amount)
-                }
+                // And update the data in the chosen category
+                viewModel.getCatById(transactionRecipientId)
+                    .observe(this) { category ->
+                        viewModel.updateCat(category, amount)
+                    }
 
-            finish()
-            true
+                finish()
+                true
+            }
         }
     }
 
 
 
-    private fun showExitAlertDialog(){
+    // Display an Alert dialog when pressing an Exit button
+    private fun showExitAlertDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Discard changes and exit?")
         builder.setMessage("This action cannot be undone.")
-        builder.setNegativeButton("Keep editing") {dialog, i -> }
-        builder.setPositiveButton("Yes") {dialog, i ->
-            finish()}
+        builder.setNegativeButton("Keep editing") { dialog, i -> }
+        builder.setPositiveButton("Yes") { dialog, i ->
+            finish()
+        }
         builder.show()
+    }
+
+    // Check if balance is not empty
+    private fun validateTransactionAmount(amount: String): String? {
+        if (amount == "") {
+            return "Wrong input"
+        }
+        return null
     }
 
     // StackOverFlow's function for DatePicker

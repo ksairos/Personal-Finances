@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.leanback.widget.Util
 import com.example.personalfinances.R
 import com.example.personalfinances.Utils
 import com.example.personalfinances.databinding.ActivityAddAccountBinding
@@ -36,9 +37,9 @@ class AddAccountActivity : AppCompatActivity() {
 
                 // Collect data from Inputs
                 val accName = binding.addAccName.text.toString()
-                val accBalance = Utils.roundDouble(binding.addAccBalance.text.toString().toDouble())
+                val accBalance = binding.addAccBalance.text.toString()
                 // Account name validation
-                if (validateAccName(accName) == null){
+                if (validateAccName(accName) == null && validateAccBalance(accBalance) == null){
 
                     // For now we will use TextEdit to create Icon and Color of Category
                     // TODO: Create dialog for choosing colors and icons. Don't forget to add a default values
@@ -54,13 +55,14 @@ class AddAccountActivity : AppCompatActivity() {
                     intent.putExtra(Utils.ACC_NAME_KEY, accName)
                     intent.putExtra(Utils.ACC_COLOR_KEY, accColor)
                     intent.putExtra(Utils.ACC_ICON_KEY, accIcon)
-                    intent.putExtra(Utils.ACC_BALANCE_KEY, accBalance)
+                    intent.putExtra(Utils.ACC_BALANCE_KEY, Utils.roundDouble(accBalance.toDouble()))
 
                     setResult(RESULT_OK, intent)
                     finish()
                 }else{
                     // Display error
                     binding.addAccTxtLayoutName.helperText = validateAccName(accName)
+                    binding.addAccTxtInpLayoutBalance.helperText = validateAccBalance(accBalance)
                 }
                 true
             } else {
@@ -71,6 +73,7 @@ class AddAccountActivity : AppCompatActivity() {
     }
 
 
+    // Show AlertDialog when Exit button pressed
     private fun showExitAlertDialog(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Discard changes and exit?")
@@ -85,7 +88,15 @@ class AddAccountActivity : AppCompatActivity() {
     // From using empty Account name and the name with more than 20 symbols
     private fun validateAccName(accName: String): String? {
         if (accName == "" || accName.length > 20) {
-            return "Required field"
+            return "Wrong input"
+        }
+        return null
+    }
+
+    // From using empty Balance input
+    private fun validateAccBalance(account_balance: String): String? {
+        if (account_balance == "") {
+            return "Wrong input"
         }
         return null
     }
