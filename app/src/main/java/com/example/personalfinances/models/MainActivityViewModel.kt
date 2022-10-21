@@ -1,10 +1,8 @@
-package com.example.personalfinances
+package com.example.personalfinances.models
 
 import androidx.lifecycle.*
-import com.example.personalfinances.accounts.AccountsViewModel
 import com.example.personalfinances.data.Account
 import com.example.personalfinances.data.repository.AccountRepository
-import kotlinx.coroutines.launch
 
 class MainActivityViewModel(private val repository: AccountRepository): ViewModel() {
 

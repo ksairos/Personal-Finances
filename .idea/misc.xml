@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/drawable/arrow_downward-48px.xml" value="0.2105" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/ic_outline_card_giftcard_24.xml" value="0.141" />
+        <entry key="app/src/main/res/drawable/ic_outline_category_24.xml" value="0.2345" />
+        <entry key="app/src/main/res/drawable/ic_outline_edit_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_outline_fastfood_24.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/ic_outline_house_24.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_outline_menu_24.xml" value="0.176" />
@@ -17,6 +19,7 @@
         <entry key="app/src/main/res/layout/activity_accounts.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_add_account.xml" value="0.30111389160156254" />
         <entry key="app/src/main/res/layout/activity_add_category.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_edit_account.xml" value="0.3125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17318109582971647" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/activity_make_transaction.xml" value="0.26747711181640627" />
@@ -25,8 +28,10 @@
         <entry key="app/src/main/res/layout/category_item_main.xml" value="0.2868972778320313" />
         <entry key="app/src/main/res/layout/category_item_recview.xml" value="0.3967025756835938" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3458333333333333" />
+        <entry key="app/src/main/res/layout/fragment_account_bottom_sheet.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_category_info_dialog_list_dialog.xml" value="0.3125" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/fragment_item_list_dialog_list_dialog.xml" value="0.2953125" />

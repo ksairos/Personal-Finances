@@ -24,7 +24,7 @@ class CategoriesAdapter(private val mContext: Context?): ListAdapter<Category, C
             categoryName.text = category.name
             category.color?.let { categoryIcon.setBackgroundColor(it) }
             category.icon?.let { categoryIcon.setIconResource(it) }
-            val text = "$" + category.expanses?.toString()
+            val text = String.format("$%.0f", category.expanses)
             categoryPrice.text = text
 
             categoryIcon.setOnClickListener{ startTransaction(mContext, category.id) }

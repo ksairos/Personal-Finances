@@ -19,7 +19,7 @@ class AccountsAdapter: ListAdapter<Account, AccountsAdapter.ViewHolder>(DiffCall
 
         fun bind(account: Account) = with(binding){
             accountName.text = account.name
-            val temp = "$${account.balance}"
+            val temp = String.format("$%.0f", account.balance)
             accountBalance.text = temp
             account.icon?.let { accountIcon.setIconResource(it) }
             account.color?.let { accountIcon.setBackgroundColor(it) }

@@ -5,9 +5,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.example.personalfinances.accounts.AccountsFragment
-import com.example.personalfinances.categories.CategoriesFragment
 import com.example.personalfinances.databinding.ActivityMainBinding
+import com.example.personalfinances.fragments.AccountsFragment
+import com.example.personalfinances.fragments.CategoriesFragment
+import com.example.personalfinances.models.MainActivityViewModel
+import com.example.personalfinances.models.MainActivityViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     // Initialize our ViewModel
-    private val viewModel : MainActivityViewModel by viewModels {
+    private val viewModel: MainActivityViewModel by viewModels {
         MainActivityViewModelFactory((application as PersonalFinancesApplication).accRepository)
     }
 
@@ -35,12 +37,12 @@ class MainActivity : AppCompatActivity() {
      */
     // TODO: Add dependency injection (Dagger) to avoid database initialization everytime
     private fun observeData() {
-        viewModel.sumBalance.observe(this, Observer{ balance ->
+        viewModel.sumBalance.observe(this) { balance ->
             if (balance == null) binding.toolBar.title = "$0"
-            else binding.toolBar.title = "$${balance}"
-        })
-
+            else binding.toolBar.title = String.format("$%.0f", balance)
         }
+
+    }
 
     // This function is used to initialize views and their inner content
     private fun init() {
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set Listeners for bottom navigation
         binding.botNav.setOnItemSelectedListener { item ->
-            when (item.itemId){
+            when (item.itemId) {
                 R.id.bot_nav_categories -> {
                     openFragment(R.id.fragment_container, CategoriesFragment())
                     true

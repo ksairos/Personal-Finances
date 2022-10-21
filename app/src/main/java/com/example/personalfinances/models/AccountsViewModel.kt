@@ -1,4 +1,4 @@
-package com.example.personalfinances.accounts
+package com.example.personalfinances.models
 
 import androidx.lifecycle.*
 import com.example.personalfinances.data.Account

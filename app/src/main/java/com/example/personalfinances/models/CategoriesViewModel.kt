@@ -1,5 +1,4 @@
-package com.example.personalfinances.categories
-
+package com.example.personalfinances.models
 import androidx.lifecycle.*
 import com.example.personalfinances.data.Category
 import com.example.personalfinances.data.repository.CategoriesRepository

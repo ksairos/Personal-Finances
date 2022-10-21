@@ -9,6 +9,8 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.personalfinances.databinding.ActivityMakeTransactionBinding
+import com.example.personalfinances.models.MakeTransactionViewModel
+import com.example.personalfinances.models.MakeTransactionViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -75,10 +77,11 @@ class MakeTransactionActivity : AppCompatActivity() {
 
             val amountTxt = binding.createTransactionAmountEditText.text.toString()
 
-            if (validateTransactionAmount(amountTxt) != null){
-                binding.createTransactionAmountLayout.helperText = validateTransactionAmount(amountTxt)
+            if (validateTransactionAmount(amountTxt) != null) {
+                binding.createTransactionAmountLayout.helperText =
+                    validateTransactionAmount(amountTxt)
                 false
-            }else{
+            } else {
                 val amount = amountTxt.toDouble()
                 // Use LiveData to find the chosen Account we want to use by its name
                 viewModel.getAccByName(binding.accountsSpinner.selectedItem.toString())
@@ -106,7 +109,6 @@ class MakeTransactionActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
     // Display an Alert dialog when pressing an Exit button
