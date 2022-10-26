@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/toolbar_edit"
-                app:navigationIcon="@drawable/ic_outline_menu_24"
+                app:navigationIcon="@drawable/utils_menu_24"
                 app:subtitle="@string/all_accounts"
                 app:subtitleCentered="true"
                 app:title="$0"
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    app:icon="@drawable/ic_baseline_keyboard_arrow_left_24"
+                    app:icon="@drawable/utils_keyboard_arrow_left_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    app:icon="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    app:icon="@drawable/utils_keyboard_arrow_right_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

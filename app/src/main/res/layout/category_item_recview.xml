@@ -27,7 +27,7 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        app:icon="@drawable/ic_outline_fastfood_48"
+        app:icon="@drawable/category_fastfood_48"
         app:iconGravity="textStart"
         app:iconPadding="0dp" />
 

@@ -31,8 +31,8 @@ class Utils {
 
 
 //        val ICONS = listOf(
-//            R.drawable.ic_outline_transport_48,
-//            R.drawable.ic_outline_card_giftcard_48,
+//            R.drawable.category_transport_48,
+//            R.drawable.category_giftcard_48,
 //            R.drawable.ic_outline_fastfood_48,
 //            R.drawable.ic_outline_house_48,
 //            R.drawable.ic_outline_shopping_bag_48

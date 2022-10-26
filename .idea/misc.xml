@@ -4,15 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18525179856115107" />
+        <entry key="app/src/main/res/drawable/account_credit_card_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/arrow_back_ios-48px.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/arrow_downward-48px.xml" value="0.2105" />
+        <entry key="app/src/main/res/drawable/category_shopping_bag_48.xml" value="0.2345" />
+        <entry key="app/src/main/res/drawable/category_transport_48.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.176" />
+        <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_outline_card_giftcard_24.xml" value="0.141" />
+        <entry key="app/src/main/res/drawable/ic_outline_card_giftcard_48.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_outline_category_24.xml" value="0.2345" />
+        <entry key="app/src/main/res/drawable/ic_outline_credit_card_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_outline_edit_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_outline_fastfood_24.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/ic_outline_house_24.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/ic_outline_menu_24.xml" value="0.176" />
+        <entry key="app/src/main/res/drawable/ic_outline_phone_android_48.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_outline_transaction_24.xml" value="0.1685" />
         <entry key="app/src/main/res/layout/acc_item_recview.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/account_item_recview.xml" value="0.33" />

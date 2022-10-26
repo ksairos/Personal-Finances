@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/toolbar_confirm"
-            app:navigationIcon="@drawable/ic_outline_close_24"
+            app:navigationIcon="@drawable/utils_close_24"
             app:title="@string/create_transaction" />
 
     </com.google.android.material.appbar.AppBarLayout>

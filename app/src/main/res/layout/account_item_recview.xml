@@ -17,7 +17,7 @@
         android:insetRight="0dp"
         android:insetBottom="0dp"
         app:cornerRadius="@dimen/CORNER_RADIUS"
-        app:icon="@drawable/ic_outline_credit_card_24"
+        app:icon="@drawable/account_credit_card_24"
         app:iconGravity="textStart"
         app:iconPadding="0dp" />
 
