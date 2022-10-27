@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".accounts.AddAccountActivity">
+    tools:context=".accounts.EditAccountActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/addAcc_appBarLayout"
+        android:id="@+id/editAcc_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/addAcc_topAppBar"
+            android:id="@+id/editAcc_topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/toolbar_confirm"
             app:navigationIcon="@drawable/utils_close_24"
-            app:title="@string/new_account" />
+            app:title="@string/edit_account" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,10 +32,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addAcc_appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/editAcc_appBarLayout">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addAcc_txtLayoutName"
+            android:id="@+id/editAcc_txtLayoutName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addAcc_name"
+                android:id="@+id/editAcc_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addAcc_txtInpLayoutBalance"
+            android:id="@+id/editAcc_txtInpLayoutBalance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -67,10 +67,10 @@
             app:helperTextTextColor="@color/m3_ref_error_error40"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addAcc_txtLayoutName">
+            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtLayoutName">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addAcc_balance"
+                android:id="@+id/editAcc_balance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,17 +80,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addAcc_txtInpLayoutColor"
+            android:id="@+id/editAcc_txtInpLayoutColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="@string/color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addAcc_txtInpLayoutBalance">
+            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtInpLayoutBalance">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addAcc_color"
+                android:id="@+id/editAcc_color"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,23 +99,34 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addAcc_txtInpLayoutIcon"
+            android:id="@+id/editAcc_txtInpLayoutIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="@string/icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addAcc_txtInpLayoutColor">
+            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtInpLayoutColor">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addAcc_icon"
+                android:id="@+id/editAcc_icon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/editAcc_txtInpLayoutIcon"
+            app:layout_constraintStart_toStartOf="@+id/editAcc_txtInpLayoutIcon"
+            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtInpLayoutIcon"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_margin="10dp"
+            android:text="@string/delete_account"
+            android:gravity="left|center_vertical"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

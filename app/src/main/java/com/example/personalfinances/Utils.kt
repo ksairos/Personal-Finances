@@ -18,8 +18,8 @@ class Utils {
         const val ACC_ICON_KEY: String = "accIconKey"
         const val ACC_BALANCE_KEY: String = "accBalanceKey"
 
-//        const val TRANSACTION_FROM_KEY: String = "transactionFromKey"
-        const val TRANSACTION_TO_KEY: String = "transactionToKey"
+        const val TRANSACTION_ID_TO_KEY: String = "transactionIdToKey"
+        const val TRANSACTION_NAME_TO_KEY: String = "transactionNameToKey"
 
         // Round Float to two numbers after the floating point
         fun roundDouble(number: Double?): Double?{
@@ -31,8 +31,8 @@ class Utils {
 
 
 //        val ICONS = listOf(
-//            R.drawable.ic_outline_transport_48,
-//            R.drawable.ic_outline_card_giftcard_48,
+//            R.drawable.category_transport_48,
+//            R.drawable.category_giftcard_48,
 //            R.drawable.ic_outline_fastfood_48,
 //            R.drawable.ic_outline_house_48,
 //            R.drawable.ic_outline_shopping_bag_48

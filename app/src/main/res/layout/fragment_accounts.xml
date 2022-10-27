@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".accounts.AccountsFragment">
+    tools:context=".fragments.AccountsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/accounts_rec_view"
@@ -21,5 +21,5 @@
         android:layout_marginBottom="28dp"
 
         android:contentDescription="@string/add_a_new_account"
-        android:src="@drawable/ic_baseline_add_24" />
+        android:src="@drawable/utils_add_24" />
 </FrameLayout>

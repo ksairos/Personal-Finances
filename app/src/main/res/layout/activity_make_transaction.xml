@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/toolbar_confirm"
-            app:navigationIcon="@drawable/ic_outline_close_24"
+            app:navigationIcon="@drawable/utils_close_24"
             app:title="@string/create_transaction" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -44,25 +44,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/transaction_from"
+        <Spinner
+            android:id="@+id/accounts_spinner"
             style="@style/TextAppearance.Material3.TitleLarge"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/from_this_account"
-            app:layout_constraintEnd_toEndOf="@+id/transaction_from_label"
-            app:layout_constraintStart_toStartOf="@+id/transaction_from_label"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_from_label" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_from_label"/>
 
         <TextView
             android:id="@+id/transaction_to_label"
             style="@style/TextAppearance.Material3.LabelLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:text="@string/to"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_from"
+            app:layout_constraintTop_toBottomOf="@+id/accounts_spinner"
             tools:layout_editor_absoluteX="15dp" />
 
         <TextView
@@ -71,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/to_this_account"
+            android:text="@string/choose_the_recipient"
             app:layout_constraintEnd_toEndOf="@+id/transaction_to_label"
             app:layout_constraintStart_toStartOf="@+id/transaction_to_label"
             app:layout_constraintTop_toBottomOf="@+id/transaction_to_label" />
@@ -82,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            app:helperTextTextColor="@color/m3_ref_error_error40"
             android:hint="@string/transaction_amount"
             app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -116,10 +114,10 @@
                 style="@style/MaterialAlertDialog.Material3.Body.Text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberSigned"
-                android:focusable="false"
                 android:clickable="false"
                 android:cursorVisible="false"
+                android:focusable="false"
+                android:inputType="numberSigned"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

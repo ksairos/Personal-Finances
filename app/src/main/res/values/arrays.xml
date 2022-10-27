@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="icons">
-        <item>@drawable/ic_outline_fastfood_48</item>
-        <item>@drawable/ic_outline_card_giftcard_48</item>
-        <item>@drawable/ic_outline_house_48</item>
-        <item>@drawable/ic_outline_phone_android_48</item>
-        <item>@drawable/ic_outline_shopping_bag_48</item>
-        <item>@drawable/ic_outline_transport_48</item>
+        <item>@drawable/category_fastfood_48</item>
+        <item>@drawable/category_giftcard_48</item>
+        <item>@drawable/category_house_48</item>
+        <item>@drawable/category_phone_android_48</item>
+        <item>@drawable/category_shopping_bag_48</item>
+        <item>@drawable/category_transport_48</item>
+        <item>@drawable/category_school_24</item>
+        <item>@drawable/category_restaurant_24</item>
+        <item>@drawable/category_coffee_24</item>
+        <item>@drawable/category_smoking_24</item>
+        <item>@drawable/category_plane_24</item>
+        <item>@drawable/category_game_24</item>
     </array>
 
-    <array name="colors">
-        <item>@color/m3_black</item>
-        <item>@color/m3_sys_light_on_primary_container</item>
-        <item>@color/m3_sys_light_on_error_container</item>
-        <item>@color/my_green</item>
+    <array name="icons_account">
+        <item>@drawable/account_wallet_24</item>
+        <item>@drawable/account_bank_24</item>
+        <item>@drawable/account_money_24</item>
+        <item>@drawable/account_credit_card_24</item>
+        <item>@drawable/account_bitcoin_24</item>
     </array>
+
+    <string-array name="colors">
+        <item>#E91E63</item>
+        <item>#F44336</item>
+        <item>#9C27B0</item>
+        <item>#673AB7</item>
+        <item>#3F51B5</item>
+        <item>#2196F3</item>
+        <item>#03A9F4</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FFC107</item>
+        <item>#FF9800</item>
+        <item>#FF5722</item>
+    </string-array>
 </resources>

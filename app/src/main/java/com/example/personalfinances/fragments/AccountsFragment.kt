@@ -1,4 +1,4 @@
-package com.example.personalfinances.accounts
+package com.example.personalfinances.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,19 +9,27 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.personalfinances.PersonalFinancesApplication
 import com.example.personalfinances.Utils
+import com.example.personalfinances.models.AccountViewModelFactory
+import com.example.personalfinances.accounts.AccountsAdapter
+import com.example.personalfinances.models.AccountsViewModel
+import com.example.personalfinances.accounts.AddAccountActivity
 import com.example.personalfinances.data.Account
-import com.example.personalfinances.data.MainDb
 import com.example.personalfinances.databinding.FragmentAccountsBinding
-import kotlinx.coroutines.launch
 
 class AccountsFragment : Fragment() {
 
     private lateinit var adapter: AccountsAdapter
     private lateinit var binding: FragmentAccountsBinding
-    private val accDb by lazy { MainDb.getDb(requireContext()).accDao() }
+    private lateinit var newAccount: Account
+
+    // Initialize ViewModel using PersonalFinancesApplication repository
+    private val viewModel : AccountsViewModel by viewModels {
+        AccountViewModelFactory((activity?.application as PersonalFinancesApplication).accRepository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +48,7 @@ class AccountsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        observeCatDb()
+        observeData()
     }
 
     // this launcher allows us to get results from our another activity
@@ -54,11 +62,16 @@ class AccountsFragment : Fragment() {
                     val accIcon = result.data?.getIntExtra(Utils.ACC_ICON_KEY, 0)
                     val accBalance = result.data?.getDoubleExtra(Utils.ACC_BALANCE_KEY, 0.toDouble())
 
-                    val newAccount = Account(null, accName, accBalance, false, accIcon, accColor)
-
-                    lifecycleScope.launch {
-                        accDb.insert(newAccount)
+                    // The first added account becomes favorite
+                    viewModel.allAccounts.observe(this){ accounts ->
+                        newAccount = if (accounts.isEmpty()){
+                            Account(null, accName, accBalance, true, accIcon, accColor)
+                        }else{
+                            Account(null, accName, accBalance, false, accIcon, accColor)
+                        }
                     }
+                    viewModel.insertAcc(newAccount)
+
                     Toast.makeText(requireActivity(), "A new account is added", Toast.LENGTH_SHORT).show()
                 }
                 AppCompatActivity.RESULT_CANCELED -> {
@@ -74,13 +87,9 @@ class AccountsFragment : Fragment() {
 This function is used to observe changes in our database. Whenever data is changed, the code in
 the curly braces us run. In our case this updates the content in our adapter.
 */
-    private fun observeCatDb() {
-        lifecycleScope.launch {
-            accDb.getAll().collect { accountList ->
-                if (accountList.isNotEmpty()) {
-                    adapter.submitList(accountList)
-                }
-            }
+    private fun observeData() {
+        viewModel.allAccounts.observe(viewLifecycleOwner) { accounts ->
+            adapter.submitList(accounts)
         }
     }
 

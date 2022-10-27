@@ -27,17 +27,20 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        app:icon="@drawable/ic_outline_fastfood_48"
+        app:icon="@drawable/category_fastfood_48"
         app:iconGravity="textStart"
         app:iconPadding="0dp" />
 
     <TextView
-        android:layout_marginTop="5dp"
         android:id="@+id/category_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/category_icon"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:maxLines="1"
+        android:maxLength="7"
+        android:ellipsize="end"
         android:text="$10" />
 
 </RelativeLayout>
