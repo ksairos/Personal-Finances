@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18525179856115107" />
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.30512820512820515" />
+        <entry key="app/src/main/res/drawable/account_bitcoin_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/account_credit_card_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/arrow_back_ios-48px.xml" value="0.312" />
         <entry key="app/src/main/res/drawable/arrow_downward-48px.xml" value="0.2105" />
         <entry key="app/src/main/res/drawable/category_shopping_bag_48.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/category_transport_48.xml" value="0.2345" />
+        <entry key="app/src/main/res/drawable/color_blob.xml" value="0.1465" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.2345" />
         <entry key="app/src/main/res/drawable/ic_outline_card_giftcard_24.xml" value="0.141" />
@@ -25,7 +28,7 @@
         <entry key="app/src/main/res/layout/account_item_recview.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_accounts.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_add_account.xml" value="0.30111389160156254" />
-        <entry key="app/src/main/res/layout/activity_add_category.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_add_category.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_edit_account.xml" value="0.3125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17318109582971647" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.3307291666666667" />
@@ -34,6 +37,10 @@
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/category_item_main.xml" value="0.2868972778320313" />
         <entry key="app/src/main/res/layout/category_item_recview.xml" value="0.3967025756835938" />
+        <entry key="app/src/main/res/layout/color_picker.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/color_picker_item.xml" value="0.2741241455078125" />
+        <entry key="app/src/main/res/layout/color_spinner_bg.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/color_spinner_item.xml" value="0.14336372847011145" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/fragment_account_bottom_sheet.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_accounts.xml" value="0.25" />
