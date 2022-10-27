@@ -45,15 +45,14 @@
         android:id="@+id/divider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/account_balance"
+        android:layout_alignStart="@id/account_balance"
         android:layout_marginTop="10dp"
+        app:dividerColor="@color/m3_sys_light_inverse_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_below="@id/account_balance"
-        android:layout_alignStart="@id/account_balance"
-        app:dividerColor="@color/m3_sys_light_inverse_primary"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </RelativeLayout>

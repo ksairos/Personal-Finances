@@ -2,23 +2,30 @@ package com.example.personalfinances.categories
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import com.example.personalfinances.R
+import com.example.personalfinances.Utils
 import com.example.personalfinances.databinding.ActivityAddCategoryBinding
 import com.example.personalfinances.features.colorpicker.ColorAlertDialog
+import eltos.simpledialogfragment.SimpleDialog
+import eltos.simpledialogfragment.color.SimpleColorDialog
 
 
-class AddCategoryActivity : AppCompatActivity() {
+class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultListener {
 
     private val TAG = "AddCategoryActivity"
     private lateinit var binding: ActivityAddCategoryBinding
 
     private lateinit var icons: TypedArray
     private lateinit var colors: TypedArray
+
+    private var pickedColor: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAddCategoryBinding.inflate(layoutInflater)
@@ -35,7 +42,8 @@ class AddCategoryActivity : AppCompatActivity() {
         }
 
         binding.addCatColorBtn.setOnClickListener {
-            showColorPickDialog()
+//            showColorPickDialog()
+            callColorDialog()
         }
 
         // Listener for Confirmation button
@@ -47,23 +55,22 @@ class AddCategoryActivity : AppCompatActivity() {
 
                 // Category name validation
                 if (validateCatName(catName) == null){
-//
-//                    // For now we will use TextEdit to create Icon and Color of Category
-//                    // TODO: Create dialog for choosing colors and icons. Don't forget to add a default values
-//                    val catColorIdx = binding.addCatIcon.text.toString().toInt()
-//                    val catIconIdx = binding.addCatColor.text.toString().toInt()
-//
-//                    // Create color resource and icon R.drawable.id and pass them into our Category instance
-//                    val catColor = colors.getColor(catColorIdx, -1)
+
+                    // Create color resource and icon R.drawable.id and pass them into our Category instance
+                    var catColor = Utils.colorArray(this)[0]
+
+                    if (pickedColor != null){
+                        catColor = pickedColor as Int
+                    }
 //                    val catIcon = icons.getResourceId(catIconIdx, -1)
-//
-//                    // Sending the data back to the MainActivity
-//                    intent = Intent()
-//                    intent.putExtra(Utils.CAT_NAME_KEY, catName)
-//                    intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
-//                    intent.putExtra(Utils.CAT_ICON_KEY, catIcon)
-//
-//                    setResult(RESULT_OK, intent)
+
+                    // Sending the data back to the MainActivity
+                    intent = Intent()
+                    intent.putExtra(Utils.CAT_NAME_KEY, catName)
+                    intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
+                    intent.putExtra(Utils.CAT_ICON_KEY, 0)
+
+                    setResult(RESULT_OK, intent)
                     finish()
                 }else{
                     // Display error
@@ -76,6 +83,16 @@ class AddCategoryActivity : AppCompatActivity() {
         }
 
     }
+
+
+    override fun onResult(dialogTag: String, which: Int, extras: Bundle): Boolean {
+        if (dialogTag == Utils.COLOR_PICK_TAG && which == SimpleDialog.OnDialogResultListener.BUTTON_POSITIVE) {
+            pickedColor = extras.getInt(SimpleColorDialog.COLOR)
+            return true
+        }
+        return false
+    }
+
 
     // From using empty category name and the name with more than 20 symbols
     private fun validateCatName(catName: String): String? {
@@ -98,5 +115,12 @@ class AddCategoryActivity : AppCompatActivity() {
 
     private fun showColorPickDialog(){
         ColorAlertDialog().show(supportFragmentManager, "ColorPickFragment")
+    }
+
+    private fun callColorDialog(){
+        SimpleColorDialog.build()
+            .title(getString(R.string.icon_color))
+            .colors(Utils.colorArray(this))
+            .show(this, Utils.COLOR_PICK_TAG)
     }
 }

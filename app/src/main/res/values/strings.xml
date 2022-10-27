@@ -37,4 +37,6 @@
     <string name="delete_account">Delete Account</string>
     <string name="transfer">Transfer</string>
     <string name="edit">Edit</string>
+    <string name="category_color">Category Color</string>
+    <string name="icon_color">Icon Color</string>
 </resources>

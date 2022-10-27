@@ -30,14 +30,14 @@
         <entry key="app/src/main/res/layout/activity_add_account.xml" value="0.30111389160156254" />
         <entry key="app/src/main/res/layout/activity_add_category.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_edit_account.xml" value="0.3125" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17318109582971647" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.3307291666666667" />
         <entry key="app/src/main/res/layout/activity_make_transaction.xml" value="0.26747711181640627" />
         <entry key="app/src/main/res/layout/add_category_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/layout/category_item_main.xml" value="0.2868972778320313" />
         <entry key="app/src/main/res/layout/category_item_recview.xml" value="0.3967025756835938" />
-        <entry key="app/src/main/res/layout/color_picker.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/color_picker.xml" value="0.25" />
         <entry key="app/src/main/res/layout/color_picker_item.xml" value="0.2741241455078125" />
         <entry key="app/src/main/res/layout/color_spinner_bg.xml" value="0.25" />
         <entry key="app/src/main/res/layout/color_spinner_item.xml" value="0.14336372847011145" />

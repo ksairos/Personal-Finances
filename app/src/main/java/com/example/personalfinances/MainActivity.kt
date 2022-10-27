@@ -5,6 +5,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.personalfinances.databinding.ActivityMainBinding
 import com.example.personalfinances.fragments.AccountsFragment
 import com.example.personalfinances.fragments.CategoriesFragment
@@ -79,4 +83,14 @@ class MainActivity : AppCompatActivity() {
             .replace(placeHolder, frag)
             .commit()
     }
+
+//    // Functions for using Navigation Components
+//    private fun setup_navigation(){
+//        val navHostFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.main_nav) as NavHostFragment
+//        val navController = navHostFragment.findNavController()
+//    }
+//
+//    private fun openNavFragment(controller: NavController){
+//
+//    }
 }
