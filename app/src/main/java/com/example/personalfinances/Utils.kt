@@ -1,14 +1,12 @@
 package com.example.personalfinances
 
 import android.content.Context
-import android.content.res.Resources
-import androidx.room.TypeConverter
+import android.graphics.drawable.Drawable
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.*
 
 class Utils {
-    companion object{
+    companion object {
         // Keys for our future intents
         const val CAT_NAME_KEY: String = "catNameKey"
         const val CAT_ICON_KEY: String = "catIconKey"
@@ -22,11 +20,15 @@ class Utils {
         const val TRANSACTION_ID_TO_KEY: String = "transactionIdToKey"
         const val TRANSACTION_NAME_TO_KEY: String = "transactionNameToKey"
 
-        // Tags for the Dialogs
+        // Tags for the color dialog
         const val COLOR_PICK_TAG: String = "colorPickTag"
 
+        // Tags for Icon Picker
+        const val ICON_DIALOG_TAG = "iconDialog"
+
+
         // Round Float to two numbers after the floating point
-        fun roundDouble(number: Double?): Double?{
+        fun roundDouble(number: Double?): Double? {
             val df = DecimalFormat("#.##")
             df.roundingMode = RoundingMode.HALF_UP
             return df.format(number)?.toDouble()
@@ -51,6 +53,9 @@ class Utils {
             context.getColor(R.color.color16)
         )
 
+        fun iconArray(context: Context) = listOf<Drawable?>(
+            context.getDrawable(R.drawable.account_bank_24)
+        )
 
 
 //        val ICONS = listOf(
@@ -69,17 +74,6 @@ class Utils {
 //        )
     }
 
-    // context class allows us to convert the Date class into Long, because Date is not available for Room DB
-    class DateConverters {
-        @TypeConverter
-        fun toDate(value: Long?): Date? {
-            return value?.let { Date(it) }
-        }
 
-        @TypeConverter
-        fun fromDate(date: Date?): Long? {
-            return date?.time
-        }
-    }
 
 }

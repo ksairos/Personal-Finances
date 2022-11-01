@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
     version = 1
 )
 
-@TypeConverters(Utils.DateConverters::class)
+@TypeConverters(Converters::class)
 abstract class MainDb : RoomDatabase() {
 
     abstract fun catDao(): CatDao
@@ -25,7 +25,7 @@ abstract class MainDb : RoomDatabase() {
     //
     private class MainCallback(
         private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
+    ) : Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
