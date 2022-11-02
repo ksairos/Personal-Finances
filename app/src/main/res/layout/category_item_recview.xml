@@ -30,7 +30,7 @@
         app:icon="@drawable/category_fastfood_48"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconSize="24dp"/>
+        app:iconSize="24dp" />
 
     <TextView
         android:id="@+id/category_price"
@@ -39,9 +39,9 @@
         android:layout_below="@+id/category_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:maxLines="1"
-        android:maxLength="7"
         android:ellipsize="end"
+        android:maxLength="7"
+        android:maxLines="1"
         android:text="$10" />
 
 </RelativeLayout>
