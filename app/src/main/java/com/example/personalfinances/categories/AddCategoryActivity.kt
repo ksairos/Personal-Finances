@@ -25,7 +25,7 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
     private lateinit var binding: ActivityAddCategoryBinding
 
     private var pickedColor: Int? = null
-    private var pickedIcon: Icon? = null
+    private var pickedIconId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAddCategoryBinding.inflate(layoutInflater)
@@ -66,13 +66,18 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
                         catColor = pickedColor as Int
                     }
 
-//                    val catIcon = icons.getResourceId(catIconIdx, -1)
+                    // Use IconId = 0, unless the user chooses another Icon using Icon Picker
+                    var catIconId: Int? = 0
+                    if (pickedIconId != null){
+                        catIconId = pickedIconId
+                    }
+
 
                     // Sending the data back to the MainActivity
                     intent = Intent()
                     intent.putExtra(Utils.CAT_NAME_KEY, catName)
                     intent.putExtra(Utils.CAT_COLOR_KEY, catColor)
-                    intent.putExtra(Utils.CAT_ICON_KEY, 0)
+                    intent.putExtra(Utils.CAT_ICON_KEY, catIconId)
 
                     setResult(RESULT_OK, intent)
                     finish()
@@ -138,8 +143,9 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
         // Record the result of our Selected Icon
     override fun onIconDialogIconsSelected(dialog: IconDialog, icons: List<Icon>) {
         // Show a toast with the list of selected icon IDs.
-            pickedIcon = icons[0]
-            binding.test.setImageDrawable(pickedIcon?.drawable)
-            Toast.makeText(this, "Icon selected: ${icons[0].pathData}", Toast.LENGTH_SHORT).show()
+            val pickedIcon = icons[0]
+            pickedIconId = pickedIcon.id
+            binding.test.setImageDrawable(pickedIcon.drawable)
+            Toast.makeText(this, "Icon selected: $pickedIconId", Toast.LENGTH_SHORT).show()
     }
 }

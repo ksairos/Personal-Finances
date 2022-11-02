@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.personalfinances.MakeTransactionActivity
+import com.example.personalfinances.PersonalFinancesApplication
 //import com.example.personalfinances.MakeTransactionActivity
 import com.example.personalfinances.R
 import com.example.personalfinances.Utils
@@ -24,7 +25,13 @@ class CategoriesAdapter(private val mContext: Context?): ListAdapter<Category, C
         fun bind(category: Category, mContext: Context?) = with(binding){
             categoryName.text = category.name
             category.color?.let { categoryIcon.setBackgroundColor(it) }
-            category.icon?.let { categoryIcon.setIconResource(it) }
+            categoryIcon.setIconResource(mContext?.resources?.getIdentifier("category_coffee_24", "drawable", mContext.packageName)!!)
+            categoryIcon.icon = category.icon?.let {
+                PersonalFinancesApplication.instance.iconPack?.getIcon(
+                    it
+                )?.drawable
+            }
+
             val text = String.format("$%.0f", category.expanses)
             categoryPrice.text = text
 

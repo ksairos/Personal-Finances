@@ -52,26 +52,6 @@ class Utils {
             context.getColor(R.color.color15),
             context.getColor(R.color.color16)
         )
-
-        fun iconArray(context: Context) = listOf<Drawable?>(
-            context.getDrawable(R.drawable.account_bank_24)
-        )
-
-
-//        val ICONS = listOf(
-//            R.drawable.category_transport_48,
-//            R.drawable.category_giftcard_48,
-//            R.drawable.ic_outline_fastfood_48,
-//            R.drawable.ic_outline_house_48,
-//            R.drawable.ic_outline_shopping_bag_48
-//        )
-//
-//        val COLORS = listOf(
-//            R.color.m3_black,
-//            R.color.m3_sys_light_on_primary_container,
-//            R.color.m3_sys_light_on_error_container,
-//            R.color.my_green
-//        )
     }
 
 

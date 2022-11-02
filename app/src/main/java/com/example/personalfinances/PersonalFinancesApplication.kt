@@ -12,6 +12,11 @@ import kotlinx.coroutines.SupervisorJob
 import java.util.*
 
 class PersonalFinancesApplication: Application() {
+
+    companion object {
+        lateinit var instance: PersonalFinancesApplication private set
+    }
+
     // No need to cancel this scope as it'll be torn down with the process
     private val applicationScope = CoroutineScope(SupervisorJob())
 
@@ -28,6 +33,7 @@ class PersonalFinancesApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         // Load the icon pack on application start.
+        instance = this
         loadIconPack()
     }
 

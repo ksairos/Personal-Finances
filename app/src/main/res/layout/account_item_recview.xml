@@ -19,7 +19,8 @@
         app:cornerRadius="@dimen/CORNER_RADIUS"
         app:icon="@drawable/account_credit_card_24"
         app:iconGravity="textStart"
-        app:iconPadding="0dp" />
+        app:iconPadding="0dp"
+        app:iconSize="24dp"/>
 
 
     <com.google.android.material.textview.MaterialTextView
