@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    //TODO: Delete those two icon arrays after creating stable icon and color picker for Accounts
     <array name="icons">
         <item>@drawable/category_fastfood_48</item>
         <item>@drawable/category_giftcard_48</item>

@@ -32,11 +32,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addCat_appBarLayout">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testCategory"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/utils_category_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/addCat_txtLayoutName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/name"
             app:counterEnabled="true"
             app:counterMaxLength="20"
@@ -45,7 +65,7 @@
             app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/testCategory">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addCat_name"
@@ -55,44 +75,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <!--        <com.google.android.material.textfield.TextInputLayout-->
-        <!--            android:id="@+id/addCat_colorBtn"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="10dp"-->
-        <!--            android:hint="@string/color"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/addCat_txtLayoutName">-->
-
-        <!--            <com.google.android.material.textfield.TextInputEditText-->
-        <!--                android:id="@+id/addCat_color"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="parent" />-->
-        <!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--        <com.google.android.material.textfield.TextInputLayout-->
-        <!--            android:id="@+id/addCat_iconBtn"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="10dp"-->
-        <!--            android:hint="@string/icon"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/addCat_colorBtn">-->
-
-        <!--            <com.google.android.material.textfield.TextInputEditText-->
-        <!--                android:id="@+id/addCat_icon"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="parent" />-->
-        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addCat_iconBtn"
@@ -117,42 +99,6 @@
             app:layout_constraintEnd_toEndOf="@+id/addCat_iconBtn"
             app:layout_constraintStart_toStartOf="@+id/addCat_iconBtn"
             app:layout_constraintTop_toBottomOf="@+id/addCat_iconBtn" />
-
-        <ImageView
-            android:id="@+id/test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addCat_colorBtn"
-            app:srcCompat="@drawable/account_bank_24" />
-
-
-        <!--        <Button-->
-        <!--            android:id="@+id/addCat_colorBtn"-->
-        <!--            style="@style/Widget.Material3.Button.OutlinedButton"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginEnd="5dp"-->
-        <!--            android:text="@string/color"-->
-        <!--            app:layout_constraintEnd_toStartOf="@+id/addCat_iconBtn"-->
-        <!--            app:layout_constraintHorizontal_bias="0.5"-->
-        <!--            app:layout_constraintHorizontal_chainStyle="spread"-->
-        <!--            app:layout_constraintStart_toStartOf="@+id/addCat_txtInpLayoutIcon"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/addCat_txtInpLayoutIcon" />-->
-
-        <!--        <Button-->
-        <!--            android:id="@+id/addCat_iconBtn"-->
-        <!--            style="@style/Widget.Material3.Button.OutlinedButton"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="5dp"-->
-        <!--            android:text="@string/icon"-->
-        <!--            app:layout_constraintEnd_toEndOf="@+id/addCat_txtInpLayoutIcon"-->
-        <!--            app:layout_constraintHorizontal_bias="0.5"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/addCat_colorBtn"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/addCat_txtInpLayoutIcon" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

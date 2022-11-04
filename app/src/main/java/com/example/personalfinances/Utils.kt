@@ -2,6 +2,7 @@ package com.example.personalfinances
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -50,8 +51,16 @@ class Utils {
             context.getColor(R.color.color13),
             context.getColor(R.color.color14),
             context.getColor(R.color.color15),
-            context.getColor(R.color.color16)
+            context.getColor(R.color.color16),
         )
+
+//        fun colorArrayHex(context: Context) = colorArray(context).map { colorToHex(it) }
+//
+//
+//        // Convert resource ID into color hex value
+//        fun colorToHex(color: Int): String{
+//            return String.format("#%06x", color and 0xffffff)
+//        }
     }
 
 
