@@ -45,7 +45,7 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
 
         // Listener for Cancel button
         binding.topAppBar.setNavigationOnClickListener {
-            showExitAlertDialog()
+            onBackPressed()
         }
 
         // Listener for Color Pick button
@@ -133,15 +133,14 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
     }
 
     //? Show Alert Dialog when up button pressed
-    //TODO: Add listener for back button (system button)
-    private fun showExitAlertDialog() {
+    override fun onBackPressed(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Discard changes and exit?")
         builder.setMessage("This action cannot be undone.")
         builder.setNegativeButton("Keep editing") { dialog, i -> }
         builder.setPositiveButton("Yes") { dialog, i ->
             setResult(RESULT_CANCELED, intent)
-            finish()
+            super.onBackPressed()
         }
         builder.show()
     }

@@ -39,7 +39,7 @@ class AccountsFragment : Fragment() {
 
         // Set Recycler View
         binding.accountsRecView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = AccountsAdapter()
+        adapter = AccountsAdapter(context)
         binding.accountsRecView.adapter = adapter
 
         return binding.root

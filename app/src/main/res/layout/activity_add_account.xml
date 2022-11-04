@@ -34,6 +34,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addAcc_appBarLayout">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testAccount"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/account_credit_card_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/addAcc_txtLayoutName"
             android:layout_width="match_parent"
@@ -47,7 +65,7 @@
             app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/testAccount">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addAcc_name"
@@ -79,43 +97,29 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addAcc_txtInpLayoutColor"
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addAcc_iconBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addAcc_txtInpLayoutBalance">
+            android:gravity="start|center_vertical"
+            android:text="@string/icon"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/addAcc_txtInpLayoutBalance"
+            app:layout_constraintStart_toStartOf="@+id/addAcc_txtInpLayoutBalance"
+            app:layout_constraintTop_toBottomOf="@+id/addAcc_txtInpLayoutBalance" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addAcc_color"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addAcc_txtInpLayoutIcon"
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addAcc_colorBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addAcc_txtInpLayoutColor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/addAcc_icon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp"
+            android:gravity="start|center_vertical"
+            android:text="@string/color"
+            app:layout_constraintEnd_toEndOf="@+id/addAcc_iconBtn"
+            app:layout_constraintStart_toStartOf="@+id/addAcc_iconBtn"
+            app:layout_constraintTop_toBottomOf="@+id/addAcc_iconBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
