@@ -16,6 +16,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/editAcc_topAppBar"
+            style='@style/Widget.Material3.Toolbar.Surface'
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,6 +34,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editAcc_appBarLayout">
 
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testEditAccount"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/account_credit_card_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editAcc_txtLayoutName"
             android:layout_width="match_parent"
@@ -46,7 +66,7 @@
             app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/testEditAccount">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editAcc_name"
@@ -78,43 +98,30 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editAcc_txtInpLayoutColor"
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editAcc_iconBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtInpLayoutBalance">
+            android:gravity="start|center_vertical"
+            android:text="@string/icon"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/editAcc_txtInpLayoutBalance"
+            app:layout_constraintStart_toStartOf="@+id/editAcc_txtInpLayoutBalance"
+            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtInpLayoutBalance" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editAcc_color"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editAcc_txtInpLayoutIcon"
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editAcc_colorBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtInpLayoutColor">
+            android:layout_marginTop="10dp"
+            android:gravity="start|center_vertical"
+            android:text="@string/color"
+            app:layout_constraintEnd_toEndOf="@+id/editAcc_iconBtn"
+            app:layout_constraintStart_toStartOf="@+id/editAcc_iconBtn"
+            app:layout_constraintTop_toBottomOf="@+id/editAcc_iconBtn" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editAcc_icon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.Material3.Button.OutlinedButton"
@@ -123,9 +130,9 @@
             android:layout_margin="10dp"
             android:gravity="left|center_vertical"
             android:text="@string/delete_account"
-            app:layout_constraintEnd_toEndOf="@+id/editAcc_txtInpLayoutIcon"
-            app:layout_constraintStart_toStartOf="@+id/editAcc_txtInpLayoutIcon"
-            app:layout_constraintTop_toBottomOf="@+id/editAcc_txtInpLayoutIcon" />
+            app:layout_constraintEnd_toEndOf="@+id/editAcc_colorBtn"
+            app:layout_constraintStart_toStartOf="@+id/editAcc_colorBtn"
+            app:layout_constraintTop_toBottomOf="@+id/editAcc_colorBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
