@@ -62,7 +62,7 @@ class MakeTransactionViewModel(
 
     // Function to Update Category expenses
     fun updateCat(category: Category, amount: Double){
-        val newExpanses = category.expanses?.plus(amount)
+        val newExpanses = category.expenses?.plus(amount)
         val updatedCategory = Category(category.id, category.name, newExpanses, category.icon, category.color)
         viewModelScope.launch { cat_repository.updateCat(updatedCategory) }
     }

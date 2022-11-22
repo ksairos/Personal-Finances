@@ -39,4 +39,7 @@
     <string name="edit">Edit</string>
     <string name="category_color">Category Color</string>
     <string name="icon_color">Icon Color</string>
+    <string name="edit_cat">Edit Category</string>
+    <string name="delete_category">Delete Category</string>
+    <string name="expenses">Expenses</string>
 </resources>

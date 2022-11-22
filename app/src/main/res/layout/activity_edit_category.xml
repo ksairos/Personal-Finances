@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".categories.EditCategoryActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/editCat_appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/editCat_topAppBar"
+            style='@style/Widget.Material3.Toolbar.Surface'
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/toolbar_confirm"
+            app:navigationIcon="@drawable/utils_close_24"
+            app:title="@string/edit_cat" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCat_appBarLayout">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testEditCategory"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/category_coffee_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editCat_txtLayoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/name"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:errorEnabled="true"
+            app:helperTextTextColor="@color/m3_ref_error_error40"
+            app:hintTextAppearance="@style/Widget.Material3.MaterialTimePicker.Display.TextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/testEditCategory">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editCat_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editCat_iconBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start|center_vertical"
+            android:text="@string/icon"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/editCat_txtLayoutName"
+            app:layout_constraintStart_toStartOf="@+id/editCat_txtLayoutName"
+            app:layout_constraintTop_toBottomOf="@+id/editCat_txtLayoutName" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editCat_colorBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="start|center_vertical"
+            android:text="@string/color"
+            app:layout_constraintEnd_toEndOf="@+id/editCat_iconBtn"
+            app:layout_constraintStart_toStartOf="@+id/editCat_iconBtn"
+            app:layout_constraintTop_toBottomOf="@+id/editCat_iconBtn" />
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/delete_category"
+            app:layout_constraintEnd_toEndOf="@+id/editCat_colorBtn"
+            app:layout_constraintStart_toStartOf="@+id/editCat_colorBtn"
+            app:layout_constraintTop_toBottomOf="@+id/editCat_colorBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

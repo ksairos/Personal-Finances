@@ -70,7 +70,7 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
                 val catName = binding.addCatName.text.toString()
 
                 // Category name validation
-                if (validateCatName(catName) == null) {
+                if (Utils.validateName(catName) == null) {
 
                     // Create color resource and icon R.drawable.id and pass them into our Category instance
                     if (pickedColor != null) {
@@ -92,14 +92,13 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
                     finish()
                 } else {
                     // Display error
-                    binding.addCatTxtLayoutName.helperText = validateCatName(catName)
+                    binding.addCatTxtLayoutName.helperText = Utils.validateName(catName)
                 }
                 true
             } else {
                 false
             }
         }
-
     }
 
 
@@ -120,16 +119,6 @@ class AddCategoryActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
             return true
         }
         return false
-    }
-
-
-    //? Input Validation functions
-    // From using empty category name and the name with more than 20 symbols
-    private fun validateCatName(catName: String): String? {
-        if (catName == "" || catName.length > 20) {
-            return "Required field"
-        }
-        return null
     }
 
     //? Show Alert Dialog when up button pressed

@@ -11,7 +11,7 @@ data class Category(
     @ColumnInfo(name = "name")
     var name: String?,
     @ColumnInfo(name = "expanses")
-    var expanses: Double?,
+    var expenses: Double?,
     @ColumnInfo(name = "icon")
     var icon: Int?,
     @ColumnInfo(name = "color")

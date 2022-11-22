@@ -17,6 +17,7 @@ import com.maltaisn.icondialog.pack.IconPack
 import eltos.simpledialogfragment.SimpleDialog
 import eltos.simpledialogfragment.color.SimpleColorDialog
 
+
 class AddAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultListener,
     IconDialog.Callback {
 
@@ -70,7 +71,7 @@ class AddAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultListe
                 val accName = binding.addAccName.text.toString()
                 val accBalance = binding.addAccBalance.text.toString()
                 // Account name validation
-                if (validateAccName(accName) == null && validateAccBalance(accBalance) == null) {
+                if (Utils.validateName(accName) == null && Utils.validateAccBalance(accBalance) == null) {
 
                     // Create color resource and icon R.drawable.id and pass them into our Account instance
                     if (pickedColor != null) {
@@ -93,8 +94,8 @@ class AddAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultListe
                     finish()
                 } else {
                     // Display error
-                    binding.addAccTxtLayoutName.helperText = validateAccName(accName)
-                    binding.addAccTxtInpLayoutBalance.helperText = validateAccBalance(accBalance)
+                    binding.addAccTxtLayoutName.helperText = Utils.validateName(accName)
+                    binding.addAccTxtInpLayoutBalance.helperText = Utils.validateAccBalance(accBalance)
                 }
                 true
             } else {
@@ -142,20 +143,4 @@ class AddAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultListe
         builder.show()
     }
 
-    //? Input Validation functions
-    // From using empty Account name and the name with more than 20 symbols
-    private fun validateAccName(accName: String): String? {
-        if (accName == "" || accName.length > 20) {
-            return "Wrong input"
-        }
-        return null
-    }
-
-    // From using empty Balance input
-    private fun validateAccBalance(account_balance: String): String? {
-        if (account_balance == "") {
-            return "Wrong input"
-        }
-        return null
-    }
 }

@@ -31,6 +31,7 @@ class Utils {
 
         // Tag for Bundle
         const val ACC_ID_TAG = "accountID"
+        const val CAT_ID_TAG = "categoryID"
 
 
         // Round Float to two numbers after the floating point
@@ -66,6 +67,23 @@ class Utils {
                 .title(mContext.getString(R.string.icon_color))
                 .colors(colorArray(mContext))
                 .show(fragment, COLOR_PICK_TAG)
+        }
+
+        //? Input Validation functions
+        // From using empty Category/Account name and the name with more than 20 symbols
+        fun validateName(catName: String): String? {
+            if (catName == "" || catName.length > 20) {
+                return "Wrong input"
+            }
+            return null
+        }
+
+        // From using empty Balance input
+        fun validateAccBalance(account_balance: String): String? {
+            if (account_balance == "") {
+                return "Wrong input"
+            }
+            return null
         }
 
     }

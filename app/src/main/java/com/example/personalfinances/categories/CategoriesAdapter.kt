@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.example.personalfinances.MakeTransactionActivity
 import com.example.personalfinances.PersonalFinancesApplication
 import com.example.personalfinances.R
 import com.example.personalfinances.Utils
+import com.example.personalfinances.accounts.EditAccountActivity
 import com.example.personalfinances.data.Category
 import com.example.personalfinances.databinding.CategoryItemRecviewBinding
 
@@ -32,10 +34,12 @@ class CategoriesAdapter(private val mContext: Context?) :
                 )?.drawable
             }
 
-            val text = String.format("$%.0f", category.expanses)
+            val text = String.format("$%.0f", category.expenses)
             categoryPrice.text = text
 
             categoryIcon.setOnClickListener { startTransaction(mContext, category.id) }
+
+            categoryIcon.setOnLongClickListener { editCategory(mContext, category.id) }
 
         }
 
@@ -43,6 +47,13 @@ class CategoriesAdapter(private val mContext: Context?) :
             val intent = Intent(mContext, MakeTransactionActivity::class.java)
             intent.putExtra(Utils.TRANSACTION_ID_TO_KEY, categoryId)
             mContext?.startActivity(intent)
+        }
+
+        private fun editCategory(mContext: Context?, categoryId: Int?): Boolean{
+            val intent = Intent(mContext, EditCategoryActivity::class.java)
+            intent.putExtra(Utils.CAT_ID_TAG, categoryId)
+            mContext?.startActivity(intent)
+            return true
         }
     }
 
