@@ -3,6 +3,8 @@ package com.example.personalfinances
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import eltos.simpledialogfragment.color.SimpleColorDialog
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -26,6 +28,9 @@ class Utils {
 
         // Tags for Icon Picker
         const val ICON_DIALOG_TAG = "iconDialog"
+
+        // Tag for Bundle
+        const val ACC_ID_TAG = "accountID"
 
 
         // Round Float to two numbers after the floating point
@@ -54,13 +59,15 @@ class Utils {
             context.getColor(R.color.color16),
         )
 
-//        fun colorArrayHex(context: Context) = colorArray(context).map { colorToHex(it) }
-//
-//
-//        // Convert resource ID into color hex value
-//        fun colorToHex(color: Int): String{
-//            return String.format("#%06x", color and 0xffffff)
-//        }
+        //? Color Picker Functionality
+        // Build and display the Color Picker Dialog
+        fun showColorPickerDialog(mContext: Context, fragment: FragmentActivity) {
+            SimpleColorDialog.build()
+                .title(mContext.getString(R.string.icon_color))
+                .colors(colorArray(mContext))
+                .show(fragment, COLOR_PICK_TAG)
+        }
+
     }
 
 

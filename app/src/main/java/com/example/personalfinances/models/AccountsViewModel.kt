@@ -15,6 +15,18 @@ class AccountsViewModel(private val repository: AccountRepository): ViewModel(){
         repository.insertAcc(account)
     }
 
+    // Update function
+    fun updateAcc(account: Account) = viewModelScope.launch {
+        repository.updateAcc(account)
+    }
+
+    // Get Account using its id
+    fun getAccById(id: Int?): MutableLiveData<Account> {
+        val result = MutableLiveData<Account>()
+        viewModelScope.launch { result.postValue(repository.getAccById(id)) }
+        return result
+    }
+
     // Get the sum of the balance of all accounts in our database
     fun sumBalance() = viewModelScope.launch {
         repository.sumBalance

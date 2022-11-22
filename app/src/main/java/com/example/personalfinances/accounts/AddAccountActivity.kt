@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.leanback.widget.Util
 import com.example.personalfinances.PersonalFinancesApplication
 import com.example.personalfinances.R
 import com.example.personalfinances.Utils
@@ -49,7 +50,7 @@ class AddAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultListe
 
         // Listener for Color Pick button
         binding.addAccColorBtn.setOnClickListener {
-            showColorPickerDialog()
+            Utils.showColorPickerDialog(this, this)
         }
 
         // If dialog is already added to fragment manager, get it. If not, create a new instance.
@@ -101,15 +102,6 @@ class AddAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultListe
             }
         }
 
-    }
-
-    //? Color Picker Functionality
-    // Build and display the Color Picker Dialog
-    private fun showColorPickerDialog() {
-        SimpleColorDialog.build()
-            .title(getString(R.string.icon_color))
-            .colors(Utils.colorArray(this))
-            .show(this, Utils.COLOR_PICK_TAG)
     }
 
     // This function allows us to record the chosen Color

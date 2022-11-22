@@ -18,6 +18,9 @@
             android:name=".MakeTransactionActivity"
             android:exported="false" />
         <activity
+            android:name=".accounts.EditAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".accounts.AddAccountActivity"
             android:exported="false" />
         <activity

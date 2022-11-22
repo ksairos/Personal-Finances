@@ -95,6 +95,7 @@ the curly braces us run. In our case this updates the content in our adapter.
 
     // This function is used to initialize views and their inner content
     private fun init() {
+
         binding.apply {
             // Set Listener for FAB that creates new accounts
             addAccountFab.setOnClickListener {

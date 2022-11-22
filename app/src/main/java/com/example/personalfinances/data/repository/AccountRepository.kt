@@ -37,4 +37,9 @@ class AccountRepository(private val accDao: AccDao) {
     suspend fun getAccByName(name: String?): Account {
         return accDao.getAccByName(name)
     }
+
+    @WorkerThread
+    suspend fun getAccById(id: Int?): Account {
+        return accDao.getAccById(id)
+    }
 }
