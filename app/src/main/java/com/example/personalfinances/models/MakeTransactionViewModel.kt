@@ -26,20 +26,11 @@ class MakeTransactionViewModel(
 
 
     // This function creates a transaction between account and a category
-    fun createTransaction(fromAcc: Account, toId: Int?, amount: Double, date: String?) {
+    fun createTransaction(fromAcc: Account, toId: Int?, amount: Double, date: String?, isTransfer: Boolean) {
 
         // Create and insert Transaction in our database
-        val newTransaction = Transaction(null, fromAcc.id, toId, amount, date)
+        val newTransaction = Transaction(null, fromAcc.id, toId, amount, date, isTransfer)
         viewModelScope.launch { repository.insert(newTransaction) }
-    }
-
-    // This function creates a transaction between two accounts
-    fun createTransactionToAccount() {
-        // Create and insert Transaction
-
-        // Subtract money from Account
-
-        // Add money to the recipient Account Balance
     }
 
 

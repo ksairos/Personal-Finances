@@ -37,15 +37,17 @@ class CategoriesAdapter(private val mContext: Context?) :
             val text = String.format("$%.0f", category.expenses)
             categoryPrice.text = text
 
-            categoryIcon.setOnClickListener { startTransaction(mContext, category.id) }
+            categoryIcon.setOnClickListener { startTransaction(mContext, category.id, false) }
 
             categoryIcon.setOnLongClickListener { editCategory(mContext, category.id) }
 
+
         }
 
-        private fun startTransaction(mContext: Context?, categoryId: Int?) {
+        private fun startTransaction(mContext: Context?, categoryId: Int?, isTransfer: Boolean) {
             val intent = Intent(mContext, MakeTransactionActivity::class.java)
             intent.putExtra(Utils.TRANSACTION_ID_TO_KEY, categoryId)
+            intent.putExtra(Utils.TRANSACTION_IS_TRANSFER, isTransfer)
             mContext?.startActivity(intent)
         }
 

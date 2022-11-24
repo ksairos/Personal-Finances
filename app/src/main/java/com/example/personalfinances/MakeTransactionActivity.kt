@@ -16,8 +16,6 @@ import java.util.*
 
 class MakeTransactionActivity : AppCompatActivity() {
 
-    private var transactionRecipientId: Int? = null
-
     private lateinit var binding: ActivityMakeTransactionBinding
 
     // Calendar for a date picker
@@ -39,7 +37,8 @@ class MakeTransactionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Initialize the data from the intent
-        transactionRecipientId = intent.getIntExtra(Utils.TRANSACTION_ID_TO_KEY, -1)
+        val transactionRecipientId = intent.getIntExtra(Utils.TRANSACTION_ID_TO_KEY, -1)
+        val isTransaction = intent.getBooleanExtra(Utils.TRANSACTION_IS_TRANSFER, false)
 
         // Set the name of recipient in the text field
         viewModel.getCatById(transactionRecipientId)
@@ -91,7 +90,8 @@ class MakeTransactionActivity : AppCompatActivity() {
                             account_,
                             transactionRecipientId,
                             amount,
-                            binding.createTransactionDateEditText.text?.toString()
+                            binding.createTransactionDateEditText.text?.toString(),
+                            isTransaction
                         )
 
                         // Here we update the data in our account

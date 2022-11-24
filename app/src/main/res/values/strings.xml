@@ -42,4 +42,6 @@
     <string name="edit_cat">Edit Category</string>
     <string name="delete_category">Delete Category</string>
     <string name="expenses">Expenses</string>
+    <string name="make_transfer">Transfer to another account</string>
+    <string name="transfer_from">Transfer from</string>
 </resources>

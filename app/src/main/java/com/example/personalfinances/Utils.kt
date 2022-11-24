@@ -10,6 +10,7 @@ import java.text.DecimalFormat
 
 class Utils {
     companion object {
+
         // Keys for our future intents
         const val CAT_NAME_KEY: String = "catNameKey"
         const val CAT_ICON_KEY: String = "catIconKey"
@@ -22,6 +23,7 @@ class Utils {
 
         const val TRANSACTION_ID_TO_KEY: String = "transactionIdToKey"
         const val TRANSACTION_NAME_TO_KEY: String = "transactionNameToKey"
+        const val TRANSACTION_IS_TRANSFER: String = "transactionIsTransfer"
 
         // Tags for the color dialog
         const val COLOR_PICK_TAG: String = "colorPickTag"

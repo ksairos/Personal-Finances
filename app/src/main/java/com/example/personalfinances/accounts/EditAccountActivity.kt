@@ -71,6 +71,13 @@ class EditAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
             }
             binding.editAccName.setText(accName)
             binding.editAccBalance.setText(accBalance)
+
+            if (accFavorite){
+                binding.accountIsFavorite.setIconResource(R.drawable.utils_is_favorite)
+            }else{
+                binding.accountIsFavorite.setIconResource(R.drawable.utils_not_favorite)
+            }
+            accColor?.let { binding.accountIsFavorite.setBackgroundColor(it) }
         }
 
 
@@ -144,6 +151,7 @@ class EditAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
         if (dialogTag == Utils.COLOR_PICK_TAG && which == SimpleDialog.OnDialogResultListener.BUTTON_POSITIVE) {
             pickedColor = extras.getInt(SimpleColorDialog.COLOR)
             binding.testEditAccount.setBackgroundColor(pickedColor!!)
+            binding.accountIsFavorite.setBackgroundColor(pickedColor!!)
             return true
         }
         return false

@@ -15,5 +15,7 @@ data class Transaction(
     @ColumnInfo(name = "amount")
     var amount: Double?,
     @ColumnInfo(name = "date")
-    var date: String?
+    var date: String?,
+    @ColumnInfo(name = "isTransfer")
+    val isTransfer: Boolean
 )
