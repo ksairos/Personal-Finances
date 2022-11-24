@@ -32,6 +32,10 @@ class AccountsAdapter(private val mContext: Context?) :
             // Set balance
             val temp = String.format("$%.0f", account.balance)
             accountBalance.text = temp
+            // If balance < 0 set text red
+            if (account.balance!! < 0)
+                accountBalance.setTextColor(Utils.colorArray(mContext!!)[0])
+
             // Set Icon Color
             account.color?.let { accountIcon.setBackgroundColor(it) }
             // Set Icon image
