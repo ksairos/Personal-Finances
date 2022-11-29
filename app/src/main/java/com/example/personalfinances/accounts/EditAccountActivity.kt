@@ -72,10 +72,15 @@ class EditAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
             binding.editAccName.setText(accName)
             binding.editAccBalance.setText(accBalance)
 
-            if (accFavorite){
+            if (accFavorite) {
                 binding.accountIsFavorite.setIconResource(R.drawable.utils_is_favorite)
-            }else{
+            } else {
                 binding.accountIsFavorite.setIconResource(R.drawable.utils_not_favorite)
+                binding.accountIsFavorite.isClickable = true
+                binding.accountIsFavorite.setOnClickListener {
+                    accFavorite = makeFavorite()
+                    binding.accountIsFavorite.setIconResource(R.drawable.utils_is_favorite)
+                }
             }
             accColor?.let { binding.accountIsFavorite.setBackgroundColor(it) }
         }
@@ -132,7 +137,8 @@ class EditAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
                 } else {
                     // Display error
                     binding.editAccTxtLayoutName.helperText = Utils.validateName(accName)
-                    binding.editAccTxtInpLayoutBalance.helperText = Utils.validateAccBalance(accBalance)
+                    binding.editAccTxtInpLayoutBalance.helperText =
+                        Utils.validateAccBalance(accBalance)
                 }
                 true
             } else {
@@ -144,6 +150,20 @@ class EditAccountActivity : AppCompatActivity(), SimpleDialog.OnDialogResultList
         binding.editAccTopAppBar.setNavigationOnClickListener {
             onBackPressed()
         }
+    }
+
+    //? Makes account favorite
+    private fun makeFavorite(): Boolean {
+        viewModel.getFavoriteAcc().observe(this) { account_ ->
+            if (account_ == null) {
+                return@observe
+            } else {
+                val oldFavoriteAccount: Account = account_
+                oldFavoriteAccount.favorite = false
+                viewModel.updateAcc(oldFavoriteAccount)
+            }
+        }
+        return true
     }
 
     //? This function allows us to record the chosen Color

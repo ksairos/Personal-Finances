@@ -32,6 +32,13 @@ class AccountsViewModel(private val repository: AccountRepository): ViewModel(){
         repository.sumBalance
     }
 
+    // Get Favorite account
+    fun getFavoriteAcc(): MutableLiveData<Account> {
+        val result = MutableLiveData<Account>()
+        viewModelScope.launch { result.postValue(repository.getFavoriteAcc()) }
+        return result
+    }
+
 }
 
 class AccountViewModelFactory(private val repository: AccountRepository) : ViewModelProvider.Factory {

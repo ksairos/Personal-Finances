@@ -20,7 +20,6 @@ class AccountRepository(private val accDao: AccDao) {
     @WorkerThread
     suspend fun insertAcc(account: Account){
         accDao.insertAcc(account)
-
     }
 
     @WorkerThread
@@ -41,5 +40,10 @@ class AccountRepository(private val accDao: AccDao) {
     @WorkerThread
     suspend fun getAccById(id: Int?): Account {
         return accDao.getAccById(id)
+    }
+
+    @WorkerThread
+    suspend fun getFavoriteAcc(): Account{
+        return accDao.getFavoriteAcc()
     }
 }

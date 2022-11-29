@@ -64,6 +64,9 @@ interface AccDao {
     @Query("SELECT id FROM account")
     fun getAllIds(): LiveData<List<Int?>>
 
+    @Query("SELECT * FROM account WHERE favorite=:isFavorite")
+    suspend fun getFavoriteAcc(isFavorite: Boolean = true): Account
+
 //    @Query("SELECT * FROM account WHERE favorite=1")
 //    suspend fun selectFavoriteAccount()
 }
