@@ -41,6 +41,7 @@ class AccountBottomSheetFragment : BottomSheetDialogFragment() {
             Toast.makeText(context, "Edit Clicked", Toast.LENGTH_SHORT).show()
             val intent = Intent(requireActivity(), EditAccountActivity::class.java)
             intent.putExtra(Utils.ACC_ID_TAG, accId)
+            dismiss()
             startActivity(intent)
         }
 
